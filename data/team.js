@@ -1,0 +1,38 @@
+export const team = [
+  {
+    id: 1,
+    name: 'Rajesh Sharma',
+    role: 'Founder & Lead Mechanic',
+    expertise: 'Engine Diagnostics, Transmission Repair',
+    experience: '15 years',
+    image: '/user1.jpeg',
+    bio: 'Rajesh has been serving Indore with expertise in automotive repair for over 15 years.',
+  },
+  {
+    id: 2,
+    name: 'Vikram Patel',
+    role: 'Senior Technician',
+    expertise: 'Brake Systems, Electrical',
+    experience: '10 years',
+    image: '/user3.jpeg',
+    bio: 'Specialized in brake systems and electrical troubleshooting with certification from leading institutes.',
+  },
+  {
+    id: 3,
+    name: 'Arjun Singh',
+    role: 'Technician',
+    expertise: 'Oil Changes, Maintenance',
+    experience: '7 years',
+    image: '/user4.jpg',
+    bio: 'Expert in routine maintenance and preventive care with a passion for customer satisfaction.',
+  },
+  {
+    id: 4,
+    name: 'Priya Desai',
+    role: 'Service Manager',
+    expertise: 'Customer Service, Parts Management',
+    experience: '8 years',
+    image: '/user5.jpg',
+    bio: 'Ensures smooth operations and exceptional customer experience at every visit.',
+  },
+];
