@@ -8,7 +8,7 @@ export default function FloatingContactBar() {
   const { company } = useSiteContext();
 
   return (
-    <div className="fixed bg-pink-400 bottom-4 left-4 z-40 flex flex-col gap-3">
+    <div className="fixed bottom-4 left-4 z-40 flex flex-col gap-3">
       {/* WhatsApp Button */}
       <a
         href={`https://wa.me/${company.whatsapp.replace(/[^0-9]/g, '')}`}
