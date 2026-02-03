@@ -12,7 +12,7 @@ export const revalidate = 3600; // Revalidate every hour
 export default function HomePage() {
   return (
     <>
-      <main className="min-h-screen">
+      <main className="min-h-screen max-w-screen overflow-hidden">
         <HomeContent services={services} testimonials={testimonials} />
       </main>
     </>

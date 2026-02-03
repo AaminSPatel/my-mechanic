@@ -29,7 +29,7 @@ import { EffectCards } from "swiper/modules";
 
 export default function HomeContent() {
   return (
-    <main className="w-full bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
+    <main className="w-full bg-amber-600 bg-backgroun text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
       {/* ================= HERO SECTION (H1 SEO) ================= */}
       <section className="relative h-auto md:h-[600px] pb-12 w-full overflow-hidden bg-background group">
         <div className="absolute inset-0 opacity-50">
