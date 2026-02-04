@@ -13,6 +13,7 @@ import {
   Clock, 
   ArrowRight 
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Footer() {
   const { company, social } = useSiteContext();
@@ -29,12 +30,15 @@ export default function Footer() {
           {/* Column 1: Company Info */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <h2 className="text-2xl font-extrabold italic tracking-tighter text-primary">
-                {company?.name || "Car Repair"}
+             {/*  <h2 className="text-2xl font-extrabold italic tracking-tighter text-primary">
+                {company?.name || "MyMechanic"}
               </h2>
               <p className="text-sm text-muted-foreground mt-1">
-                {company?.tagline || "Your Car Buddy."}
-              </p>
+                {company?.tagline || "Your Car Buddy"}
+              </p> */}
+               <div className="flex flex-col">
+                            <Image src={'/logo.jpeg'} className='h-18 w-44 rounded-md' height={200} width={400} alt='MyMechanic24 Auto Care Service in Indore'/>
+                          </div>
             </Link>
             <p className="text-sm leading-relaxed text-muted-foreground">
               {company?.description || "Indore's most trusted car repair service. We provide professional maintenance, diagnostics, and repairs with certified mechanics."}

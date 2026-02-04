@@ -1,20 +1,8 @@
-import { Poppins, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SiteProvider } from "@/context/SiteContext";
 import FloatingContactBar from "@/components/FloatingContactBar";
-
-const poppins = Poppins({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: 'MyMechanic Auto Care - Premium Car Service in Indore',
@@ -28,18 +16,18 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://yourdomain.com'), // Replace with your actual domain
+  metadataBase: new URL('https://my-mechanic-iota.vercel.app'), // Replace with your actual domain
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'MyMechanic Auto Care - Premium Car Service in Indore',
     description: 'Expert auto repair and maintenance services in Indore. Professional mechanics, genuine parts, quick service.',
-    url: 'https://yourdomain.com',
+    url: 'https://my-mechanic-iota.vercel.app',
     siteName: 'MyMechanic Auto Care',
     images: [
       {
-        url: 'https://yourdomain.com/car-repair.jpeg', // Replace with actual image
+        url: 'https://my-mechanic-iota.vercel.app/car-repair.jpeg', // Replace with actual image
         width: 1200,
         height: 630,
         alt: 'MyMechanic Auto Care - Car Service in Indore',
@@ -52,7 +40,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'MyMechanic Auto Care - Premium Car Service in Indore',
     description: 'Expert auto repair and maintenance services in Indore. Professional mechanics, genuine parts, quick service.',
-    images: ['https://yourdomain.com/apple-icon.jpeg'], // Replace with actual image
+    images: ['https://my-mechanic-iota.vercel.app/apple-icon.jpeg'], // Replace with actual image
     creator: '@mymechaniccare', // Replace with actual Twitter handle
   },
   robots: {
@@ -75,7 +63,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${poppins.variable} ${geistMono.variable} antialiased overflow-x-hidden w-screen`}
+        className="antialiased overflow-x-hidden w-screen"
       >
         <SiteProvider>
           <Header />

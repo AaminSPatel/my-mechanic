@@ -1,24 +1,22 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import FloatingContactBar from '@/components/FloatingContactBar';
 import TermsContent from './terms-content/PageContent';
 
 export const metadata = {
-  title: 'Terms & Conditions - ProDrive Auto Care',
-  description: 'Terms and conditions for using ProDrive Auto Care services.',
+  title: 'Terms & Conditions | Service Warranty Policy - MyMechanic',
+  description: 'Read our service agreement, warranty policy on spare parts, and payment terms for car repairs at MyMechanic Auto Care Indore.',
+  keywords: ['car repair warranty policy', 'service agreement indore', 'mymechanic terms'],
+  alternates: {
+    canonical: 'https://my-mechanic-iota.vercel.app/terms',
+  },
 };
 
-export const revalidate = 86400; // Revalidate daily
+export const revalidate = 86400;
 
 export default function TermsPage() {
   return (
     <>
-      <Header />
       <main className="min-h-screen">
         <TermsContent />
       </main>
-      <Footer />
-      <FloatingContactBar />
     </>
   );
 }

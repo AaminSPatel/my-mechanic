@@ -1,15 +1,15 @@
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": ["LocalBusiness", "AutoRepair"],
-  "@id": "https://yourdomain.com/#autorepair",
+  "@id": `${process.env.NEXT_PUBLIC_SITE_URL}/#autorepair`,
   "name": "Best Car Repair Service in Indore",
-  "url": "https://yourdomain.com",
-  "logo": "https://yourdomain.com/logo.png",
+  "url": process.env.NEXT_PUBLIC_SITE_URL,
+  "logo": `${process.env.NEXT_PUBLIC_SITE_URL}/logo.jpeg`,
   "image": [
-    "https://yourdomain.com/car-repair-service-indore.jpg"
+    `${process.env.NEXT_PUBLIC_SITE_URL}/car-repair.jpeg`
   ],
-  "telephone": "+91-8966925396",
-  "priceRange": "₹₹",
+  "telephone": "+91-9977823169",
+  "priceRange": "₹199-₹1999",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Vijay Nagar",

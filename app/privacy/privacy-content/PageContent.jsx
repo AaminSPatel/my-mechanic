@@ -1,15 +1,17 @@
 'use client';
 
 import PageHeader from '@/components/PageHeader';
+import { useSiteContext } from '@/context/SiteContext';
 
 export default function PrivacyContent() {
+  const {company} = useSiteContext()
   return (
     <div className="space-y-12 pb-20">
       {/* Page Header */}
       <PageHeader
         title="Privacy Policy"
         description="We take your privacy seriously. Learn how we collect and protect your information."
-        image="/placeholder.svg?height=400&width=1200&text=Privacy+Policy"
+        image="/bmw-wash.jpeg"
       />
 
       {/* Content */}
@@ -18,7 +20,7 @@ export default function PrivacyContent() {
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Introduction</h2>
             <p className="text-muted-foreground mb-4">
-              ProDrive Auto Care (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the website. This page informs you of our
+              MyMechanic Auto Care (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the website. This page informs you of our
               policies regarding the collection, use, and disclosure of personal data when you use our Service and the
               choices you have associated with that data.
             </p>
@@ -40,7 +42,7 @@ export default function PrivacyContent() {
 
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Use of Data</h2>
-            <p className="text-muted-foreground mb-4">ProDrive Auto Care uses the collected data for various purposes:</p>
+            <p className="text-muted-foreground mb-4">MyMechanic Auto Care uses the collected data for various purposes:</p>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
               <li>To provide and maintain our Service</li>
               <li>To notify you about changes to our Service</li>
@@ -77,15 +79,15 @@ export default function PrivacyContent() {
             <div className="space-y-2 text-muted-foreground">
               <p>
                 <span className="font-semibold text-foreground">Email:</span>{' '}
-                <a href="mailto:info@prodriveautocare.com" className="text-primary hover:text-red-700">
-                  info@prodriveautocare.com
-                </a>
+              <a href={`mailto:${company?.email}`} className="text-primary hover:text-red-700">
+                {company?.email}
+              </a>
               </p>
               <p>
                 <span className="font-semibold text-foreground">Phone:</span>{' '}
-                <a href="tel:+91XXXXXXXXXX" className="text-primary hover:text-red-700">
-                  +91-XXXXXXXXXX
-                </a>
+                <a href={`tel:${company?.phone}`} className="text-primary hover:text-red-700">
+                {company?.phone}
+              </a>
               </p>
               <p>
                 <span className="font-semibold text-foreground">Location:</span> Indore, Madhya Pradesh

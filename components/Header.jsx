@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Menu, X, Phone, Search } from 'lucide-react';
 import { useSiteContext } from '@/context/SiteContext';
 import ThemeToggle from './ThemeToggle';
+import Image from 'next/image';
 
 export default function Header() {
   const { company } = useSiteContext();
@@ -25,15 +26,17 @@ export default function Header() {
           
           {/* ================= LOGO (Image Style) ================= */}
           <Link href="/" className="flex items-center gap-1 flex-shrink-0 group">
-            {/* If you have an image logo, replace this div with <Image /> */}
-            <div className="flex flex-col">
+            {/*  <div className="flex flex-col">
               <h1 className="text-3xl font-extrabold italic tracking-tighter text-primary">
                 {company?.name || "Car Repair"}
               </h1>
-              {/* Optional Tagline for SEO */}
+              
               <span className="text-[10px] text-muted-foreground uppercase tracking-widest hidden sm:block">
                 {company?.tagline || "Service Center"}
               </span>
+            </div> */}
+            <div className="flex flex-col">
+              <Image src={'/logo.jpeg'} className='h-16 w-42 rounded-md' height={200} width={400} alt='MyMechanic24 Auto Care Service in Indore'/>
             </div>
           </Link>
 
@@ -70,11 +73,7 @@ export default function Header() {
             <div className="flex items-center gap-3">
               <ThemeToggle />
               
-              {/* Search Icon (Decorative) */}
-              <button className="p-2 text-foreground hover:text-primary transition hidden sm:block">
-                <Search className="w-5 h-5" />
-              </button>
-
+            
               {/* Hamburger Menu - Mobile Only */}
               <button
                 onClick={() => setIsOpen(!isOpen)}

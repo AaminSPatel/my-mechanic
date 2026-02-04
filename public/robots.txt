@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://my-mechanic-iota.vercel.app/sitemap.xml

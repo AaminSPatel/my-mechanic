@@ -31,12 +31,12 @@ export function SiteProvider({ children }) {
 
   const siteData = {
     company: {
-      name: 'My Machanic',
-      tagline: 'Your Car Buddy.',
+      name: 'MyMachanic',
+      tagline: 'Your Car Buddy',
       location: 'Indore, Madhya Pradesh',
-      email: 'info@prodriveautocare.com',
-      phone: '+91-81201 73615',
-      whatsapp: '+91-81201 73615',
+      email: 'mymechanic.in@gmail.com',
+      phone: '+91-9977823169',
+      whatsapp: '+91-9977823169',
       hours: {
         weekday: '9:00 AM - 7:00 PM',
        
