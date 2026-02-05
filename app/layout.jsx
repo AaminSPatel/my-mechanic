@@ -74,12 +74,12 @@ export default function RootLayout({ children }) {
       <body
         className="antialiased overflow-x-hidden w-screen"
       >
-        <Script 
+        {/* <Script 
           src="https://cdn.counter.dev/script.js" 
           data-id="f7f1820c-0edc-4ef0-8dd4-1745e73e696f" 
           data-utcoffset="6"
           strategy="afterInteractive" 
-        />
+        /> */}
         <SiteProvider>
           <Header />
           {children}
