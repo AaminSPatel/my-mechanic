@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://my-mechanic-iota.vercel.app';
+  const baseUrl = ' https://mymechanic24.vercel.app';
 
   return [
     {

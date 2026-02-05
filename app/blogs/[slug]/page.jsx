@@ -68,7 +68,7 @@ export default async function BlogPostPage({ params }) {
     notFound();
   }
 
-  const siteUrl = 'https://my-mechanic-iota.vercel.app';
+  const siteUrl = ' https://mymechanic24.vercel.app';
 
   // Related Posts filter logic (Server side)
   const relatedPosts = blogs

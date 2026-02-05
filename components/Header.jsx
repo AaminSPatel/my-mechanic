@@ -26,7 +26,10 @@ export default function Header() {
           
           {/* ================= LOGO (Image Style) ================= */}
           <Link href="/" className="flex items-center gap-1 flex-shrink-0 group">
-            {/*  <div className="flex flex-col">
+            <div className="flex flex-col">
+              <Image src={'/logo.jpeg'} className='h-16 w-42 rounded-md' height={200} width={400} alt='Doorstep Auto Care Service in Indore'/>
+            </div>
+             {/* <div className="flex flex-col">
               <h1 className="text-3xl font-extrabold italic tracking-tighter text-primary">
                 {company?.name || "Car Repair"}
               </h1>
@@ -35,9 +38,6 @@ export default function Header() {
                 {company?.tagline || "Service Center"}
               </span>
             </div> */}
-            <div className="flex flex-col">
-              <Image src={'/logo.jpeg'} className='h-16 w-42 rounded-md' height={200} width={400} alt='MyMechanic24 Auto Care Service in Indore'/>
-            </div>
           </Link>
 
           {/* ================= DESKTOP NAVIGATION ================= */}

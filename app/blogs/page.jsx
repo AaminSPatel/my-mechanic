@@ -22,13 +22,13 @@ export default function BlogsPage() {
     "@type": "CollectionPage",
     "name": "Car Care & Maintenance Blog",
     "description": "A collection of expert articles regarding car repair, maintenance, and automotive tips.",
-    "url": "https://my-mechanic-iota.vercel.app/blog",
+    "url": " https://mymechanic24.vercel.app/blog",
     "mainEntity": {
       "@type": "ItemList",
       "itemListElement": blogs.map((blog, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "url": `https://my-mechanic-iota.vercel.app/blog/${blog.slug || blog.id}`,
+        "url": ` https://mymechanic24.vercel.app/blog/${blog.slug || blog.id}`,
         "name": blog.title
       }))
     }

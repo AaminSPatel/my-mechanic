@@ -51,7 +51,7 @@ export default function HomeContent() {
             </div>
 
             <h1 className="text-5xl sm:text-6xl font-extrabold text-foreground italic leading-tight mb-4">
-              Best <span className="text-primary">Car Repair Service</span>{" "}
+              Doorstep <span className="text-primary">Car Repair & Service</span>{" "}
               <br />
               In Indore - Reliable & Fast
             </h1>
@@ -59,7 +59,8 @@ export default function HomeContent() {
             <div className="text-xl text-muted-foreground italic mt-4 font-light border-l-4 border-primary pl-4">
               Are you searching for a reliable{" "}
               <strong>car mechanic in Indore</strong>? Our multi-brand workshop
-              offers premium servicing at 40% less than authorized centers.
+              offers premium servicing at 40% less than authorized centers, plus{" "}
+              <strong>convenient doorstep car services</strong> right at your home.
             </div>
 
             <p className="text-muted-foreground text-md mt-6 leading-relaxed max-w-2xl">
@@ -68,7 +69,8 @@ export default function HomeContent() {
               <strong>affordable car maintenance in Indore</strong>. Located
               strategically near Vijay Nagar and Bhawarkua, we ensure your
               vehicle gets the care it deserves with genuine OEM parts and
-              certified expertise.
+              certified expertise. Choose between visiting our workshop or
+              booking our <strong>doorstep car repair service</strong> for ultimate convenience.
             </p>
 
             <div className="mt-8 flex gap-4">
@@ -318,7 +320,8 @@ export default function HomeContent() {
                 Indore's most advanced{" "}
                 <strong>multi-brand car diagnostic center</strong>. We combine
                 master craftsmanship with cutting-edge technology to keep your
-                vehicle in showroom condition.
+                vehicle in showroom condition. Plus, enjoy the convenience of{" "}
+                <strong>doorstep car services</strong> including washing, repairs, and maintenance at your location.
               </p>
             </div>
 
@@ -610,10 +613,10 @@ export default function HomeContent() {
                     Emergency Support
                   </p>
                   <p className="text-sm font-bold text-foreground">
-                    24/7 Breakdown Assistance
+                    24/7 Breakdown Assistance & Doorstep Services
                   </p>
                   <p className="text-lg font-bold text-foreground mt-2 tracking-tighter">
-                    +91 81201 73615
+                    +91 99778 23169
                   </p>
                 </div>
               </div>

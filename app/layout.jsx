@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SiteProvider } from "@/context/SiteContext";
 import FloatingContactBar from "@/components/FloatingContactBar";
+import Script from "next/script";
 
 export const metadata = {
   title: 'MyMechanic Auto Care - Premium Car Service in Indore',
@@ -16,18 +17,18 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://my-mechanic-iota.vercel.app'), // Replace with your actual domain
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL), // Replace with your actual domain
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'MyMechanic Auto Care - Premium Car Service in Indore',
     description: 'Expert auto repair and maintenance services in Indore. Professional mechanics, genuine parts, quick service.',
-    url: 'https://my-mechanic-iota.vercel.app',
+    url: ' https://mymechanic24.vercel.app',
     siteName: 'MyMechanic Auto Care',
     images: [
       {
-        url: 'https://my-mechanic-iota.vercel.app/car-repair.jpeg', // Replace with actual image
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/car-repair.jpeg`, // Replace with actual image
         width: 1200,
         height: 630,
         alt: 'MyMechanic Auto Care - Car Service in Indore',
@@ -40,7 +41,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'MyMechanic Auto Care - Premium Car Service in Indore',
     description: 'Expert auto repair and maintenance services in Indore. Professional mechanics, genuine parts, quick service.',
-    images: ['https://my-mechanic-iota.vercel.app/apple-icon.jpeg'], // Replace with actual image
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL}/apple-icon.jpeg`], // Replace with actual image
     creator: '@mymechaniccare', // Replace with actual Twitter handle
   },
   robots: {
@@ -57,6 +58,12 @@ export const metadata = {
     },
   },
   manifest: '/manifest.json',
+  otherMetaTags: [
+    {
+      name: 'google-site-verification',
+      content: 'R2HVQ0_1nYn3cEX5xUHw0Do28y7c5VKvNp944ihSpfI'
+    }
+  ],
 };
 
 export default function RootLayout({ children }) {
@@ -72,6 +79,7 @@ export default function RootLayout({ children }) {
 
           <FloatingContactBar />
         </SiteProvider>
+        <script src="https://cdn.counter.dev/script.js" data-id="f7f1820c-0edc-4ef0-8dd4-1745e73e696f" data-utcoffset="6"></script>
       </body>
     </html>
   );

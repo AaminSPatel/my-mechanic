@@ -28,7 +28,7 @@ export function SiteProvider({ children }) {
     localStorage.setItem('theme', newDarkMode ? 'dark' : 'light');
     document.documentElement.classList.toggle('dark', newDarkMode);
   };
-
+//SalluKhan@123
   const siteData = {
     company: {
       name: 'MyMachanic',

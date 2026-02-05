@@ -5,7 +5,7 @@ export const metadata = {
   description: 'Read our service agreement, warranty policy on spare parts, and payment terms for car repairs at MyMechanic Auto Care Indore.',
   keywords: ['car repair warranty policy', 'service agreement indore', 'mymechanic terms'],
   alternates: {
-    canonical: 'https://my-mechanic-iota.vercel.app/terms',
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/terms`,
   },
 };
 

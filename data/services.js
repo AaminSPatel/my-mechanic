@@ -4,7 +4,8 @@ export const services = [
     title: "Basic Service (Oil & Filter Change)", // SEO Optimized Title
     slug: "basic-car-service-indore", // Added Slug
     category: "Maintenance", // Added Category
-    description: "Essential maintenance package for your vehicle's basic needs. Quick and affordable car checkup for Indore city driving.",
+    description:
+      "Essential maintenance package for your vehicle's basic needs. Quick and affordable car checkup for Indore city driving.",
     icon: "🛠️",
     image: "/car-repair.jpeg",
     price: "₹299", // Original Price
@@ -14,6 +15,7 @@ export const services = [
       "Oil filter",
       "Air filter clean",
       "AC filter clean",
+      "Parts charges and GST extra",
     ],
   },
   {
@@ -21,7 +23,8 @@ export const services = [
     title: "Standard Service & Washing", // SEO Optimized Title
     slug: "standard-car-service-washing", // Added Slug
     category: "Maintenance", // Added Category
-    description: "Comprehensive service including fluids, cleaning, and maintenance. Best value car servicing package in Vijay Nagar.",
+    description:
+      "Comprehensive service including fluids, cleaning, and maintenance. Best value car servicing package in Vijay Nagar.",
     icon: "🔧",
     image: "/oil-change.jpeg",
     price: "₹499", // Original Price
@@ -36,6 +39,7 @@ export const services = [
       "Wiper shampoo",
       "Vacuum clean",
       "Washing",
+      "Parts charges and GST extra",
     ],
   },
   {
@@ -43,7 +47,8 @@ export const services = [
     title: "Major Service (Complete Overhaul)", // SEO Optimized Title
     slug: "major-car-service-indore", // Added Slug
     category: "Diagnostics", // Added Category
-    description: "Complete overhaul service for optimal vehicle performance. Full fluid change and deep cleaning for long-term reliability.",
+    description:
+      "Complete overhaul service for optimal vehicle performance. Full fluid change and deep cleaning for long-term reliability.",
     icon: "⚙️",
     image: "/car-check.jpeg",
     price: "₹699", // Original Price
@@ -61,6 +66,7 @@ export const services = [
       "AC vent foam wash",
       "Door lubricants",
       "Interior clean",
+      "Parts charges and GST extra",
     ],
   },
   {
@@ -68,7 +74,8 @@ export const services = [
     title: "Interior Clean - Hatchback & Sedan", // SEO Optimized Title
     slug: "interior-car-cleaning-hatchback-sedan", // Added Slug
     category: "Cleaning", // Added Category
-    description: "Thorough interior cleaning for hatchback and sedan vehicles. Deep vacuuming and polishing to remove Indore dust.",
+    description:
+      "Thorough interior cleaning for hatchback and sedan vehicles. Deep vacuuming and polishing to remove Indore dust.",
     icon: "🧽",
     image: "/car-wash.jpeg",
     price: "₹599", // Original Price
@@ -79,6 +86,7 @@ export const services = [
       "Roof clean",
       "Exterior wash",
       "Tyre polish",
+      "Parts charges and GST extra",
     ],
   },
   {
@@ -86,7 +94,8 @@ export const services = [
     title: "Interior Clean - SUV & MUV", // SEO Optimized Title
     slug: "suv-interior-cleaning-indore", // Added Slug
     category: "Cleaning", // Added Category
-    description: "Comprehensive interior cleaning for SUV and MUV vehicles. Heavy-duty detailing for larger family cars.",
+    description:
+      "Comprehensive interior cleaning for SUV and MUV vehicles. Heavy-duty detailing for larger family cars.",
     icon: "🧼",
     image: "/car-filter-change.jpeg",
     price: "₹799", // Original Price
@@ -97,6 +106,7 @@ export const services = [
       "Roof clean",
       "Exterior wash",
       "Tyre polish",
+      "Parts charges and GST extra",
     ],
   },
   {
@@ -104,7 +114,8 @@ export const services = [
     title: "Premium Monthly Car Care Package", // SEO Optimized Title
     slug: "monthly-car-wash-subscription-indore", // Added Slug
     category: "Subscription", // Added Category
-    description: "Comprehensive car care package including multiple washes, checkups, and 100% doorstep services in Indore.",
+    description:
+      "Comprehensive car care package including multiple washes, checkups, and 100% doorstep services in Indore.",
     icon: "🚗",
     image: "/car-wash1.jpeg",
     price: "₹1499/month", // Original Price
@@ -116,6 +127,39 @@ export const services = [
       "1x Coolant Top-Up",
       "1x Engine Oil Level Check",
       "1x Engine Oil Level Check",
+      "Parts charges and GST extra",
+    ],
+  },
+  {
+    id: 7,
+    title: "Top Wash", // SEO Optimized Title
+    slug: "top-wash-service-indore", // Added Slug
+    category: "Cleaning", // Added Category
+    description:
+      "Basic exterior wash for your vehicle. Quick and affordable cleaning service.",
+    icon: "🧽",
+    image: "/bmw-wash.jpeg",
+    price: "₹99", // Original Price
+    duration: "30 minutes",
+    features: ["Exterior wash", "Tyre polish", "Parts charges and GST extra"],
+  },
+  {
+    id: 8,
+    title: "Full Wash", // SEO Optimized Title
+    slug: "full-wash-service-indore", // Added Slug
+    category: "Cleaning", // Added Category
+    description:
+      "Comprehensive interior and exterior wash for a thorough clean.",
+    icon: "🧼",
+    image: "/washing-car.jpeg",
+    price: "₹199", // Original Price
+    duration: "1 hour",
+    features: [
+      "Interior clean",
+      "Exterior wash",
+      "Vacuum clean",
+      "Dashboard polish",
+      "Parts charges and GST extra",
     ],
   },
 ];
