@@ -68,6 +68,9 @@ verification: {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <script src="https://cdn.counter.dev/script.js" data-id="f7f1820c-0edc-4ef0-8dd4-1745e73e696f" data-utcoffset="6"></script>
+      </head>
       <body
         className="antialiased overflow-x-hidden w-screen"
       >
