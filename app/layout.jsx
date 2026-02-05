@@ -58,19 +58,11 @@ export const metadata = {
     },
   },
   manifest: '/manifest.json',
-  otherMetaTags: [
-    {
-      name: 'google-site-verification',
-      content: 'R2HVQ0_1nYn3cEX5xUHw0Do28y7c5VKvNp944ihSpfI'
-    }
-  ],
-  script: [
-    {
-      src: 'https://cdn.counter.dev/script.js',
-      'data-id': 'f7f1820c-0edc-4ef0-8dd4-1745e73e696f',
-      'data-utcoffset': '6'
-    }
-  ],
+  // metadata object ke andar:
+verification: {
+  google: 'R2HVQ0_1nYn3cEX5xUHw0Do28y7c5VKvNp944ihSpfI',
+},
+ 
 };
 
 export default function RootLayout({ children }) {
@@ -79,6 +71,12 @@ export default function RootLayout({ children }) {
       <body
         className="antialiased overflow-x-hidden w-screen"
       >
+        <Script 
+          src="https://cdn.counter.dev/script.js" 
+          data-id="f7f1820c-0edc-4ef0-8dd4-1745e73e696f" 
+          data-utcoffset="6"
+          strategy="afterInteractive" 
+        />
         <SiteProvider>
           <Header />
           {children}
@@ -86,8 +84,7 @@ export default function RootLayout({ children }) {
 
           <FloatingContactBar />
         </SiteProvider>
-        {/* <script src="https://cdn.counter.dev/script.js" data-id="f7f1820c-0edc-4ef0-8dd4-1745e73e696f" data-utcoffset="6"></script>
-      */} </body>
+         </body>
     </html>
   );
 }
