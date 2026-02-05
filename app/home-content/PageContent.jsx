@@ -16,6 +16,7 @@ import {
   Calendar,
   Star,
   CheckCircle2,
+  StarIcon,
 } from "lucide-react";
 import { blogs } from "@/data/blogs";
 import { testimonials } from "@/data/testimonials";
@@ -505,7 +506,7 @@ export default function HomeContent() {
             </div>
 
             <div className="flex-1 space-y-4 mb-8">
-              {testimonials.slice(0, 4).map((testimonial, i) => (
+              {testimonials.slice(0, 3).map((testimonial, i) => (
                 <div
                   key={i}
                   className="bg-card p-5 rounded-xl border border-border/50 hover:bg-secondary/30 transition-all"
@@ -540,13 +541,31 @@ export default function HomeContent() {
                 </div>
               ))}
             </div>
+             <div className="flex flex-col justify-center">
+              <div className="space-y-6">
+                <div className="bg-card p-6 rounded-xl border border-border/50">
+                  <h3 className="text-xl font-bold text-foreground mb-4">Read & Post Reviews on Google</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    Join thousands of satisfied customers who have shared their experiences. Your feedback helps us improve and assists others in choosing the best car service in Indore.
+                  </p>
+                  <div className="flex gap-4">
+                    <a
+                      href="https://maps.app.goo.gl/DeuQikRWUgCjJkTU6?g_st=ipc"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 bg-secondary hover:bg-primary hover:text-primary-foreground text-foreground px-4 py-2 uppercase text-xs font-bold tracking-widest border border-border transition-all duration-300"
+                    >
+                    <StarIcon className="text-yellow-500"/>  Read all Reviews on Google
+                    </a>
+                  
+                  </div>
+                </div>
 
-            {/* <Link
-              href="/testimonials"
-              className="bg-secondary hover:bg-primary hover:text-primary-foreground text-foreground px-8 py-4 uppercase text-xs font-bold tracking-[0.2em] border border-border transition-all text-center rounded-lg"
-            >
-              View Community Reviews
-            </Link> */}
+       
+              </div>
+            </div>
+
+            
           </section>
 
           {/* Column 3: Contact/Hours (Action Hub) */}
@@ -631,6 +650,9 @@ export default function HomeContent() {
           </aside>
         </div>
       </section>
+
+      {/* ================= GOOGLE REVIEWS & LOCATION SECTION ================= */}
+    
     </main>
   );
 }

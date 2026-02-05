@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SiteProvider } from "@/context/SiteContext";
 import FloatingContactBar from "@/components/FloatingContactBar";
+import Script from "next/script";
 
 export const metadata = {
   title: 'MyMechanic Auto Care - Premium Car Service in Indore',
@@ -71,12 +72,7 @@ export default function RootLayout({ children }) {
       <body
         className="antialiased overflow-x-hidden w-screen"
       >
-        {/* <Script 
-          src="https://cdn.counter.dev/script.js" 
-          data-id="f7f1820c-0edc-4ef0-8dd4-1745e73e696f" 
-          data-utcoffset="6"
-          strategy="afterInteractive" 
-        /> */}
+        
         <SiteProvider>
           <Header />
           {children}
