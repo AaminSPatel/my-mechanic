@@ -74,6 +74,7 @@ export default function Footer() {
                 { label: 'About Company', href: '/about' },
                 { label: 'Latest News', href: '/blogs' },
                 { label: 'Contact Us', href: '/contact' },
+                { label: 'INV', href: '/invoice' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link 
