@@ -1,13 +1,9 @@
-# TODO: Replace Hardcoded URLs with Environment Variable
+# Invoice Generator Task
 
-## Tasks
-- [x] Replace hardcoded URLs in sakil/app/layout.jsx
-- [x] Replace hardcoded URLs in sakil/app/page.jsx
-- [x] Replace hardcoded URLs in sakil/app/contact/page.jsx
-- [x] Replace hardcoded URLs in sakil/app/services/page.jsx
-- [x] Replace hardcoded URLs in sakil/app/terms/page.jsx
-- [x] Replace hardcoded URLs in sakil/app/privacy/page.jsx
-- [x] Replace hardcoded URLs in sakil/app/blogs/page.jsx
-- [x] Replace hardcoded URLs in sakil/app/blogs/[slug]/page.jsx
-- [x] Replace hardcoded URLs in sakil/app/sitemap.js
-- [x] Test the website to ensure URLs are correctly replaced
+## Steps:
+- [x] 1. Install html2canvas dependency
+- [x] 2. Create sakil/app/invoice/page.jsx
+- [x] 3. Create sakil/app/invoice/InvoiceContent.jsx  
+- [x] 4. Update sakil/components/Header.jsx (add nav link)
+- [x] 5. Test: cd sakil ; npm run dev, visit http://localhost:3000/invoice
+- [x] 6. Complete
