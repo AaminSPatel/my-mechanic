@@ -13,54 +13,117 @@ import {
   Plus,
   Minus,
   HelpCircle,
-  Home, // Added for Doorstep representation
+  Home,
+  ShieldCheck,
+  Wrench,
+  Check,
+  X,
+  Phone,
 } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
+import { COMPANY, SITE_URL } from "@/lib/constants";
 
-export default function ServicesContent({ services }) {
+export default function ServicesContent({ services = [] }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const { company } = useSiteContext();
 
+  const categories = ["all", ...new Set(services.map((s) => s.category))];
+
   const handleBookNow = (service) => {
-    const message = `Hi, I want to book Doorstep Service: ${service.title}\nPrice: ${service.price}`;
+    const message = `Hi MyMechanic24, I want to book: ${service.title}\nPrice: ${service.price}\nMy Location in Indore: `;
     const encodedMessage = encodeURIComponent(message);
-    const phone = company.whatsapp.replace(/\D/g, "");
+    const phone = (company?.whatsappNumber || "919977823169").replace(/\D/g, "");
     window.location.href = `https://wa.me/${phone}?text=${encodedMessage}`;
   };
 
-  // ================= SCHEMA GENERATION (Updated for Doorstep) =================
+  // ================= SCHEMA GENERATION =================
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Doorstep Car Repair and Washing",
+    serviceType: "Doorstep Car Repair and Mobile Car Washing",
     provider: {
       "@type": "AutoRepair",
-      name: "MyMechanic Auto Service Center",
+      name: COMPANY.legalName,
+      image: `${SITE_URL}/logo.jpeg`,
+      telephone: COMPANY.phone,
+      url: `${SITE_URL}/services`,
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Indore",
-        addressRegion: "MP",
-        addressCountry: "IN",
+        streetAddress: COMPANY.address,
+        addressLocality: COMPANY.locality,
+        addressRegion: COMPANY.region,
+        postalCode: COMPANY.postalCode,
+        addressCountry: COMPANY.country,
       },
     },
-    areaServed: {
-      "@type": "City",
-      name: "Indore",
-    },
+    areaServed: COMPANY.serviceAreas.map((area) => ({
+      "@type": "AdministrativeArea",
+      name: `${area}, Indore`,
+    })),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Doorstep Automotive Services",
+      name: "Doorstep & Workshop Automotive Services",
       itemListElement: services.map((service, index) => ({
         "@type": "ListItem",
         position: index + 1,
         item: {
           "@type": "Service",
-          name: `${service.title} - Doorstep Service Indore`,
+          name: `${service.title} - MyMechanic24 Indore`,
           description: service.description,
+          offers: {
+            "@type": "Offer",
+            price: service.price.replace(/[^\d]/g, "") || "199",
+            priceCurrency: "INR",
+          },
         },
       })),
     },
   };
+
+  const comparisonData = [
+    {
+      feature: "Doorstep On-Site Service across Indore",
+      myMechanic: true,
+      dealership: false,
+      roadside: false,
+    },
+    {
+      feature: "100% Genuine OEM / OES Spare Parts",
+      myMechanic: true,
+      dealership: true,
+      roadside: false,
+    },
+    {
+      feature: "Live Photo / Video Approval Before Work",
+      myMechanic: true,
+      dealership: false,
+      roadside: false,
+    },
+    {
+      feature: "Zero Hidden Labor / Miscellaneous Charges",
+      myMechanic: true,
+      dealership: false,
+      roadside: false,
+    },
+    {
+      feature: "Computerized OBD-II Sensor Diagnostics",
+      myMechanic: true,
+      dealership: true,
+      roadside: false,
+    },
+    {
+      feature: "Written Service Warranty Up to 90 Days",
+      myMechanic: true,
+      dealership: true,
+      roadside: false,
+    },
+    {
+      feature: "Pricing 40% Lower Than Authorized Centers",
+      myMechanic: true,
+      dealership: false,
+      roadside: true,
+    },
+  ];
 
   return (
     <main className="w-full bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
@@ -69,32 +132,29 @@ export default function ServicesContent({ services }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* ================= PAGE HEADER (Updated with Doorstep Target) ================= */}
+      {/* ================= PAGE HEADER ================= */}
       <PageHeader
         title="Best Doorstep Car Repair & Washing Services in Indore"
-        description="Get professional car care at your home or office. From doorstep foam washing to emergency repairs, we bring the garage to you in Indore."
+        description="Certified automotive mechanics and professional snow foam detailing brought directly to your home or office parking. Honest menu pricing, OEM parts, and post-service warranty."
         image="/car_washing_indore_mymechanic.jpeg"
       />
 
       {/* ================= INTRODUCTION SECTION ================= */}
       <section className="py-16 border-b border-border/50">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold italic text-foreground mb-6">
-            Expert Car Care{" "}
-            <span className="text-primary">At Your Home</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+            <Sparkles size={14} /> Comprehensive Auto Care Across Indore
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold italic text-foreground mb-6">
+            Dealership Precision Delivered{" "}
+            <span className="text-primary">To Your Doorstep</span>
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-            Tired of waiting at service centers? Our{" "}
-            <strong>doorstep car service in Indore</strong> is designed for your
-            busy lifestyle. Whether you are at home in{" "}
-            <strong>Vijay Nagar</strong> or at your office in{" "}
-            <strong>Palasia</strong>, our certified mechanics come to you.
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-6">
+            Tired of spending your precious weekends sitting in crowded garage waiting lounges? Our{" "}
+            <strong>doorstep car service across Indore</strong> brings the workshop directly to you. Whether you are at your apartment in <strong>Vijay Nagar</strong>, residence in <strong>Palda or Tejaji Nagar</strong>, or business office on <strong>AB Road</strong>, our mobile technician van arrives fully equipped.
           </p>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            We specialize in <strong>on-site car repair and washing</strong>,
-            using portable equipment to provide high-quality service without you
-            moving an inch. From <strong>AB Road to Rau</strong>, we ensure your
-            vehicle gets premium treatment right in your parking lot.
+          <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
+            From high-pressure Italian snow foam washing to on-site synthetic oil replacements, computerized OBD-II scanning, and emergency dead battery jumpstarts, we ensure your car runs like new with zero inconvenience.
           </p>
         </div>
       </section>
@@ -103,27 +163,33 @@ export default function ServicesContent({ services }) {
       <section className="max-w-7xl mx-auto px-6 py-20" id="service-list">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
-              <Home size={12} /> Doorstep Service Available Across Indore
+            <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 rounded border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+              <Home size={12} /> Serving All Sectors of Indore
             </div>
-            <h2 className="text-4xl font-extrabold text-foreground italic uppercase">
-              Our Service Packages
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground italic uppercase">
+              Our Certified Service Packages
             </h2>
           </div>
 
-          <div className="flex gap-2">
-            {["all", "Maintenance", "Cleaning"].map((cat) => (
+          {/* Category Filter Tabs */}
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-bold uppercase border transition-all ${selectedCategory === cat ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-muted-foreground border-border hover:border-primary"}`}
+                className={`px-4 py-2 rounded-full text-xs font-bold uppercase border transition-all ${
+                  selectedCategory === cat
+                    ? "bg-primary text-primary-foreground border-primary shadow-md"
+                    : "bg-transparent text-muted-foreground border-border hover:border-primary"
+                }`}
               >
-                {cat}
+                {cat === "all" ? "All Packages" : cat}
               </button>
             ))}
           </div>
         </div>
 
+        {/* Services Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services
             .filter(
@@ -140,11 +206,11 @@ export default function ServicesContent({ services }) {
                     src={service.image}
                     alt={`${service.title} Doorstep Service in Indore`}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent"></div>
                   <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded text-[10px] font-bold uppercase shadow-sm">
-                    Doorstep Available
+                    {service.locationType || "Doorstep Available"}
                   </div>
                 </div>
 
@@ -152,10 +218,10 @@ export default function ServicesContent({ services }) {
                   <div className="flex justify-between items-start mb-4">
                     <div className="text-4xl">{service.icon}</div>
                     <div className="text-right">
-                      <div className="text-xl font-bold text-primary">
+                      <div className="text-xl font-black text-primary font-mono">
                         {service.price}
                       </div>
-                      <div className="text-[10px] text-muted-foreground uppercase flex items-center justify-end gap-1">
+                      <div className="text-[10px] text-muted-foreground uppercase flex items-center justify-end gap-1 mt-0.5">
                         <Clock size={10} /> {service.duration}
                       </div>
                     </div>
@@ -166,17 +232,20 @@ export default function ServicesContent({ services }) {
                   </h3>
 
                   <p className="text-muted-foreground text-sm mb-6 leading-relaxed flex-1">
-                    {service.description}{" "}
-                    <strong>
-                      Now available as a doorstep service anywhere in Indore.
-                    </strong>
+                    {service.description}
                   </p>
 
-                  <div className="space-y-3 mb-8">
+                  {service.warranty && (
+                    <div className="mb-4 inline-flex items-center gap-1.5 text-xs text-primary font-semibold bg-primary/10 px-3 py-1 rounded-md">
+                      <ShieldCheck size={14} /> {service.warranty}
+                    </div>
+                  )}
+
+                  <div className="space-y-2.5 mb-8 border-t border-border/50 pt-4">
                     {service.features.map((feature, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-2 text-sm text-foreground/80"
+                        className="flex items-start gap-2 text-xs text-foreground/80 leading-relaxed"
                       >
                         <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                         <span>{feature}</span>
@@ -186,7 +255,7 @@ export default function ServicesContent({ services }) {
 
                   <button
                     onClick={() => handleBookNow(service)}
-                    className="mt-auto w-full py-3 bg-secondary hover:bg-primary text-foreground hover:text-primary-foreground rounded-lg font-bold uppercase text-xs tracking-widest transition-all flex items-center justify-center gap-2 group-hover:gap-4"
+                    className="mt-auto w-full py-3.5 bg-secondary hover:bg-primary text-foreground hover:text-primary-foreground rounded-xl font-bold uppercase text-xs tracking-widest transition-all flex items-center justify-center gap-2 group-hover:gap-3 shadow-sm"
                   >
                     Book Doorstep Now <ArrowRight className="w-4 h-4" />
                   </button>
@@ -196,17 +265,168 @@ export default function ServicesContent({ services }) {
         </div>
       </section>
 
-      {/* ================= PROCESS SECTION (Updated for Doorstep) ================= */}
+      {/* ================= DOORSTEP VS WORKSHOP ROUTING ================= */}
+      <section className="bg-secondary/30 py-20 border-y border-border/50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2 block">
+              Smart Service Logistics
+            </span>
+            <h2 className="text-3xl md:text-4xl font-black text-foreground uppercase italic">
+              Doorstep Van vs. Central Workshop: How It Works
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+              We bring the mobile unit to your parking spot for quick repairs, or provide pick-up to our central garage on Nayta Mundla Main Road for heavy mechanical overhauls.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Column 1: Doorstep Mobile Van */}
+            <div className="bg-card p-8 rounded-3xl border border-border">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6">
+                <Home className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3 uppercase">
+                1. Doorstep Mobile Van (At Your Home / Office)
+              </h3>
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                Our specialized mobile service vehicles carry water tanks, silent generators, pressure washers, OBD-II scanners, and fluid exchange tools.
+              </p>
+              <ul className="space-y-3 text-sm text-foreground/90">
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>High-pressure snow foam car wash & interior vacuuming</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>Engine oil & filter periodic service at your parking</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>Dead battery jumpstart & 30-min on-site replacement</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>Computerized OBD-II scanner health diagnostics</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>Brake pad cleaning & minor electrical troubleshooting</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 2: Central Workshop Facility */}
+            <div className="bg-card p-8 rounded-3xl border border-border">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-6">
+                <Wrench className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-3 uppercase">
+                2. Central Workshop (Nayta Mundla Main Road)
+              </h3>
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+                For repairs requiring hydraulic vehicle hoists, engine disassembly, or dust-free paint booths, we offer secure pick-and-drop to our central facility.
+              </p>
+              <ul className="space-y-3 text-sm text-foreground/90">
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>Clutch plate, flywheel & pressure plate overhaul</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>Complete suspension strut & steering rack replacement</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>Engine head gasket repair, timing belt & overhaul</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>Brake disc rotor lathe resurfacing</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-primary shrink-0" />
+                  <span>Dust-free paint booth denting, painting & ceramic coating</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= COMPARISON TABLE ================= */}
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <div className="text-center mb-16">
+          <span className="text-xs font-bold uppercase tracking-widest text-primary mb-2 block">
+            The Value Equation
+          </span>
+          <h2 className="text-3xl md:text-4xl font-black text-foreground uppercase italic">
+            Why Indore Car Owners Choose MyMechanic24
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+            See how our transparent pricing, genuine parts, and doorstep convenience compare to traditional options.
+          </p>
+        </div>
+
+        <div className="overflow-x-auto rounded-2xl border border-border shadow-xl">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-secondary/60 text-foreground text-xs uppercase tracking-wider">
+                <th className="p-4 sm:p-5 border-b border-border">Service Standards</th>
+                <th className="p-4 sm:p-5 border-b border-border text-center bg-primary/10 text-primary font-black">
+                  MyMechanic24
+                </th>
+                <th className="p-4 sm:p-5 border-b border-border text-center">
+                  Authorized Dealerships
+                </th>
+                <th className="p-4 sm:p-5 border-b border-border text-center">
+                  Roadside Mechanics
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-sm divide-y divide-border/60">
+              {comparisonData.map((row, idx) => (
+                <tr key={idx} className="hover:bg-secondary/20 transition-colors">
+                  <td className="p-4 sm:p-5 font-medium text-foreground">
+                    {row.feature}
+                  </td>
+                  <td className="p-4 sm:p-5 text-center bg-primary/5">
+                    {row.myMechanic ? (
+                      <Check className="w-5 h-5 text-emerald-500 mx-auto" />
+                    ) : (
+                      <X className="w-5 h-5 text-red-500 mx-auto" />
+                    )}
+                  </td>
+                  <td className="p-4 sm:p-5 text-center">
+                    {row.dealership ? (
+                      <Check className="w-5 h-5 text-emerald-500 mx-auto" />
+                    ) : (
+                      <X className="w-5 h-5 text-red-500 mx-auto" />
+                    )}
+                  </td>
+                  <td className="p-4 sm:p-5 text-center">
+                    {row.roadside ? (
+                      <Check className="w-5 h-5 text-emerald-500 mx-auto" />
+                    ) : (
+                      <X className="w-5 h-5 text-red-500 mx-auto" />
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* ================= 4-STEP PROCESS ================= */}
       <section className="bg-secondary/30 py-20 border-y border-border/50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-foreground mb-4 uppercase italic">
-              How Our <span className="text-primary">Doorstep Service</span>{" "}
-              Works
+              How Our <span className="text-primary">Doorstep Service</span> Works
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Professional car maintenance delivered at your location in 4
-              simple steps.
+            <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base">
+              Professional car maintenance delivered at your location in 4 simple steps.
             </p>
           </div>
 
@@ -214,167 +434,112 @@ export default function ServicesContent({ services }) {
             {[
               {
                 icon: Clock,
-                title: "Book Online",
-                desc: "Pick a service and your preferred time slot.",
+                title: "1. Book Online / WhatsApp",
+                desc: "Pick your service package and preferred 1-hour arrival window.",
               },
               {
                 icon: MapPin,
-                title: "We Come to You",
-                desc: "Our team arrives at your home or office in Indore.",
+                title: "2. Mobile Van Arrives",
+                desc: "Our equipped van reaches your doorstep anywhere in Indore within 30-45 mins.",
               },
               {
                 icon: Sparkles,
-                title: "On-Site Service",
-                desc: "Expert cleaning or repair right in your parking spot.",
+                title: "3. Precision Execution",
+                desc: "Certified technicians service your car in your parking lot with live photo updates.",
               },
               {
                 icon: CheckCircle2,
-                title: "Ready to Drive",
-                desc: "Final check and digital invoice payment.",
+                title: "4. Road Test & Warranty",
+                desc: "Final electronic scan, road test check, digital invoice, and post-service warranty.",
               },
             ].map((step, idx) => (
               <div key={idx} className="text-center group">
-                <div className="w-16 h-16 mx-auto bg-card rounded-full flex items-center justify-center border border-border group-hover:border-primary group-hover:scale-110 transition-all mb-4 shadow-lg">
-                  <step.icon className="text-primary" size={32} />
+                <div className="w-16 h-16 mx-auto bg-card rounded-2xl flex items-center justify-center border border-border group-hover:border-primary group-hover:scale-110 transition-all mb-4 shadow-lg">
+                  <step.icon className="text-primary" size={28} />
                 </div>
                 <h4 className="text-lg font-bold text-foreground mb-2">
                   {step.title}
                 </h4>
-                <p className="text-sm text-muted-foreground">{step.desc}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ================= FAQ SECTION ================= */}
       <ServiceFAQ />
 
-      {/* ================= CTA SECTION ================= */}
+      {/* ================= FINAL CTA ================= */}
       <section className="bg-foreground text-background py-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-5xl font-black mb-6 uppercase italic">
-            Save Time. Book a Doorstep Service.
+            Save Time. Book Doorstep Service Today.
           </h2>
-          <p className="text-lg opacity-80 mb-8 max-w-2xl mx-auto">
-            Why drive to a garage when the garage can come to you? Get the best
-            car repair and wash at your doorstep in Indore.
+          <p className="text-base sm:text-lg opacity-80 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Why spend your weekend stuck in garage waiting lounges? Get certified car repair, oil changes, and foam washing delivered at your doorstep across Indore.
           </p>
-          <Link
-            href="/contact"
-            className="px-10 py-4 bg-primary text-primary-foreground rounded-lg font-bold uppercase tracking-widest hover:bg-primary/90 transition-all inline-flex items-center gap-2 shadow-[0_0_30px_rgba(var(--primary-rgb),0.5)]"
-          >
-            Book My Doorstep Appointment
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="px-10 py-4 bg-primary text-primary-foreground rounded-xl font-bold uppercase tracking-widest hover:bg-primary/90 transition-all inline-flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(220,38,38,0.5)]"
+            >
+              Book Doorstep Appointment <ArrowRight className="w-5 h-5" />
+            </Link>
+            <a
+              href={`tel:${COMPANY.phoneRaw}`}
+              className="px-10 py-4 bg-secondary text-foreground rounded-xl font-bold uppercase tracking-widest hover:bg-muted transition-all inline-flex items-center justify-center gap-2"
+            >
+              <Phone size={16} /> Call {COMPANY.phone}
+            </a>
+          </div>
         </div>
       </section>
     </main>
   );
 }
 
-// ================= FAQ DATA (Optimized for Doorstep SEO) =================
+// ================= FAQ DATA =================
 const faqData = [
   {
-    question: "Do you provide doorstep car service in all of Indore?",
+    question: "Do you provide doorstep car service across all sectors of Indore?",
     answer:
-      "Yes, we provide doorstep car repair and washing services across all major areas of Indore, including Vijay Nagar, Saket, Bhawarkua, Annapurna, Kanadia, Teen Imli, and Super Corridor. Our mobile service units are fully equipped for on-site maintenance.",
+      "Yes, MyMechanic24 provides doorstep car repair, diagnostics, and foam washing across all major areas of Indore, including Nayta Mundla, Palda, Tejaji Nagar, Udhyog Nagar, Nemawar Road, Bhawarkua, AB Road, Vijay Nagar, Palasia, Super Corridor, Rau, and Bypass Road. Our mobile service vans are equipped for complete on-site maintenance.",
   },
   {
-    question: "What are the charges for doorstep car washing in Indore?",
+    question: "Where is your central garage workshop located for major overhauls?",
     answer:
-      "Our doorstep car washing starts at ₹299 for a single session. However, our Monthly Premium Package at ₹1499/month offers the best value, providing weekly doorstep cleaning at your residence.",
+      "Our central repair facility is situated on Nayta Mundla Main Road, Near Palda & Tejaji Nagar intersection, Indore, MP 452020. For heavy mechanical jobs like clutch replacement, suspension overhauls, engine work, or denting-painting, we provide convenient pick-and-drop service to our central garage.",
   },
   {
-    question: "Can major car repairs be done at my home?",
+    question: "What are the starting prices for car services in Indore?",
     answer:
-      "Minor repairs like oil changes, battery replacement, brake cleaning, and AC servicing can be done at your doorstep. For major engine work or painting, we provide a free pick-and-drop service to our Indore workshop.",
+      "Our exterior snow foam wash starts at just ₹199, basic periodic service starts at ₹299 (plus consumables as per actual MRP), computerized OBD-II diagnostics starts at ₹349, and complete interior spa starts at ₹599. We believe in 100% transparent pricing without surprise add-on charges.",
   },
   {
-    question: "How do I book a doorstep car mechanic in Indore?",
+    question: "How long does a doorstep service visit take?",
     answer:
-      "You can book easily through our website or WhatsApp. Simply select your service, share your location in Indore, and our expert mechanic will reach you at the scheduled time.",
+      "A high-pressure snow foam wash takes approximately 45 minutes. A periodic oil and filter service takes 60 to 90 minutes. Computerized diagnostic scanning takes 30 minutes. You can relax at home or continue working at your office while our certified mechanic handles everything in your parking spot.",
   },
-  {
-    question: "What is the starting price for car service in Indore?",
-
-    answer:
-      "Our basic car service in Indore starts at just ₹299. This includes engine oil check, oil filter inspection, air filter cleaning, and a general health checkup. It is the most affordable car maintenance package in Vijay Nagar and nearby areas.",
-  },
-
-  {
-    question: "Do you offer doorstep car washing service in Indore?",
-
-    answer:
-      "Yes, we offer a Premium Monthly Car Care Package (₹1499/month) which includes doorstep car washing services. Our team visits your home or office in Indore to provide bucket wash and full foam wash on Sundays.",
-  },
-
-  {
-    question: "Which areas in Indore do you cover for breakdown support?",
-
-    answer:
-      "We cover the entire Indore city for car repair and breakdown support, including major areas like Vijay Nagar, Bhawarkua, Palasia, Rajwada, AB Road, and Super Corridor. Our mechanics can reach you within 30-45 minutes.",
-  },
-
   {
     question: "Do you use genuine spare parts for car repairs?",
-
     answer:
-      "Absolutely. We strictly use 100% genuine OEM parts (Original Equipment Manufacturer) for all brands like Maruti Suzuki, Hyundai, Tata, Honda, and Toyota. We believe in transparency and show the parts to customers before installation.",
+      "Yes, absolutely. We strictly use 100% authentic OEM (Original Equipment Manufacturer) and OES parts from certified brands (Bosch, Mobil1, Castrol, Shell, Valeo, Amaron, Exide, Purolator, NGK). We show new sealed boxes to you before installation and return old parts upon delivery.",
   },
-
   {
-    question: "How much time does a standard car service take?",
-
+    question: "What warranty do you provide on car repairs?",
     answer:
-      "A Basic Service typically takes 1-2 hours, while our Standard Service (including washing and vacuuming) takes about 2-3 hours. For Major Service or deep cleaning, we might require 4-6 hours to ensure perfection.",
+      "All service work carries our written warranty of 30 days or 1,000 km (up to 90 days / 5,000 km for major overhauls). Replacement parts carry original manufacturer warranties ranging from 6 months up to 66 months (for batteries). If an issue recurs within the warranty window, we rectify it with zero labor fee.",
   },
-
   {
-    question: "Is interior dry cleaning available for SUVs?",
-
+    question: "How does the VIP Monthly Car Care Subscription work?",
     answer:
-      "Yes, we specialize in SUV and MUV interior cleaning (₹799). Our detailing process includes deep vacuuming, dashboard polishing, roof cleaning, and stain removal to remove Indore's dust and grime completely.",
+      "For just ₹1,499/month, a dedicated technician visits your residence on schedule, providing 11 waterless/microfiber cleans, 4 full Sunday high-pressure foam washes, interior vacuuming, and regular monthly checks of engine oil, coolant, brake fluid, and battery health. You never have to worry about cleaning or checking your car again.",
   },
-
   {
-    question: "Why should I choose you over an authorized service center?",
-
+    question: "How do I book an emergency roadside breakdown in Indore?",
     answer:
-      "We offer the same dealership-level quality at 40% lower prices. You get transparent pricing, genuine parts, faster turnaround time, and personalized attention from our expert mechanics in Indore.",
-  },
-
-  {
-    question: "Do you service luxury cars like BMW or Audi?",
-
-    answer:
-      "Yes, our workshop is equipped with advanced OBD-II scanners and tools to handle luxury cars. We provide oil changes, brake pad replacement, and ceramic coating services for premium vehicles in Indore.",
-  },
-
-  {
-    question: "What is included in the Major Service Package?",
-
-    answer:
-      "Our Major Service (₹699 + Consumables) is a complete overhaul. It covers engine oil, coolant, brake oil, gear oil changes, AC vent foam wash, door lubrication, and deep interior cleaning along with exterior washing.",
-  },
-
-  {
-    question: "Can I book a car service online in Indore?",
-
-    answer:
-      "Yes! You can book an appointment directly through our website. Just select your service package, choose a time slot, and our team will confirm your booking instantly. We also accept phone bookings.",
-  },
-
-  {
-    question: "How often should I get my car AC serviced in Indore?",
-
-    answer:
-      "Given Indore's hot summers, we recommend getting your Car AC serviced once a year, preferably in March or April. We check for gas leakage, clean the cooling coil, and top up the refrigerant.",
-  },
-
-  {
-    question: "Do you offer car denting and painting services?",
-    answer:
-      "Yes, we provide high-quality denting and painting services using a dust-free paint booth. Whether it's a small scratch or a bumper replacement, we match the exact factory color of your car.",
+      "Call our 24/7 hotline directly at +91 99778 23169 or message us on WhatsApp. Share your live location in Indore, and our nearest mobile emergency technician will be dispatched to reach you within 30–45 minutes.",
   },
 ];
 
@@ -401,43 +566,55 @@ function ServiceFAQ() {
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
-            <HelpCircle size={14} /> Doorstep Service Help
+            <HelpCircle size={14} /> Service FAQ
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Frequently Asked{" "}
-            <span className="text-primary italic">Questions</span>
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4 uppercase italic">
+            Frequently Asked <span className="text-primary">Questions</span>
           </h2>
+          <p className="text-muted-foreground text-sm">
+            Answers to common questions about our Indore doorstep mobile service and central workshop.
+          </p>
         </div>
 
         <div className="space-y-4">
           {faqData.map((faq, index) => (
             <div
               key={index}
-              className={`border rounded-xl transition-all duration-300 ${openIndex === index ? "bg-secondary/20 border-primary shadow-md" : "bg-card border-border hover:border-primary/50"}`}
+              className={`border rounded-2xl transition-all duration-300 ${
+                openIndex === index
+                  ? "bg-secondary/20 border-primary shadow-md"
+                  : "bg-card border-border hover:border-primary/50"
+              }`}
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between p-5 text-left focus:outline-none"
+                className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus:outline-none"
               >
                 <span
-                  className={`text-base md:text-lg font-bold transition-colors ${openIndex === index ? "text-primary" : "text-foreground"}`}
+                  className={`text-base sm:text-lg font-bold transition-colors ${
+                    openIndex === index ? "text-primary" : "text-foreground"
+                  }`}
                 >
                   {faq.question}
                 </span>
                 <span
-                  className={`p-2 rounded-full transition-all duration-300 ${openIndex === index ? "bg-primary text-primary-foreground rotate-180" : "bg-secondary text-muted-foreground"}`}
+                  className={`p-2 rounded-full transition-all duration-300 ${
+                    openIndex === index
+                      ? "bg-primary text-primary-foreground rotate-180"
+                      : "bg-secondary text-muted-foreground"
+                  }`}
                 >
-                  {openIndex === index ? (
-                    <Minus size={18} />
-                  ) : (
-                    <Plus size={18} />
-                  )}
+                  {openIndex === index ? <Minus size={16} /> : <Plus size={16} />}
                 </span>
               </button>
               <div
-                className={`grid transition-all duration-300 ease-in-out ${openIndex === index ? "grid-rows-[1fr] opacity-100 pb-5" : "grid-rows-[0fr] opacity-0"}`}
+                className={`grid transition-all duration-300 ease-in-out ${
+                  openIndex === index
+                    ? "grid-rows-[1fr] opacity-100 pb-5"
+                    : "grid-rows-[0fr] opacity-0"
+                }`}
               >
-                <div className="overflow-hidden px-5">
+                <div className="overflow-hidden px-5 sm:px-6">
                   <p className="text-muted-foreground text-sm leading-relaxed border-t border-border/50 pt-4">
                     {faq.answer}
                   </p>

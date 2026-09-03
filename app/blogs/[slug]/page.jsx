@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
 import { blogs } from '@/data/blogs';
-import BlogPostContent from './BlogPostContent'; // Client component import
+import BlogPostContent from './BlogPostContent';
+import { SITE_URL, COMPANY, getCanonicalUrl } from '@/lib/constants';
 
-// ================= STATIC PARAMS (Build Time Optimization) =================
+// ================= STATIC PARAMS =================
 export async function generateStaticParams() {
   return blogs.map((blog) => ({
     slug: blog.slug,
@@ -15,35 +16,33 @@ export async function generateMetadata({ params }) {
   const blog = blogs.find((b) => b.slug === slug);
 
   if (!blog) {
-    return { title: 'Blog Not Found | MyMechanic Auto Care' };
+    return { title: `Blog Not Found | ${COMPANY.name}` };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL; // Apna domain yahan dalein
-
   return {
-    title: `${blog.title} | MyMechanic Auto Care`,
+    title: `${blog.title} | ${COMPANY.name}`,
     description: blog.excerpt,
     keywords: [
-      `car ${blog.category.toLowerCase()}`, 
-      'auto repair tips', 
-      'car maintenance Indore', 
+      `car ${blog.category.toLowerCase()}`,
+      'auto repair tips',
+      'car maintenance Indore',
       blog.category,
-      ...blog.title.split(' ')
+      ...blog.title.split(' ').filter((w) => w.length > 3),
     ],
     alternates: {
-      canonical: `${siteUrl}/blog/${slug}`,
+      canonical: getCanonicalUrl(`/blogs/${slug}`),
     },
     openGraph: {
       title: blog.title,
       description: blog.excerpt,
       type: 'article',
-      url: `${siteUrl}/blog/${slug}`,
+      url: `${SITE_URL}/blogs/${slug}`,
       publishedTime: blog.date,
-      authors: ['MyMechanic Auto Care'],
+      authors: [COMPANY.legalName],
       section: blog.category,
       images: [
         {
-          url: blog.image,
+          url: blog.image.startsWith('http') ? blog.image : `${SITE_URL}${blog.image}`,
           width: 1200,
           height: 630,
           alt: blog.title,
@@ -54,7 +53,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title: blog.title,
       description: blog.excerpt,
-      images: [blog.image],
+      images: [blog.image.startsWith('http') ? blog.image : `${SITE_URL}${blog.image}`],
     },
   };
 }
@@ -68,55 +67,57 @@ export default async function BlogPostPage({ params }) {
     notFound();
   }
 
-  const siteUrl = ' https://mymechanic24.vercel.app';
-
   // Related Posts filter logic (Server side)
   const relatedPosts = blogs
-    .filter((b) => b.category === blog.category && b.slug !== slug)
+    .filter((b) => b.slug !== slug)
     .slice(0, 3);
+
+  const blogImageUrl = blog.image.startsWith('http')
+    ? blog.image
+    : `${SITE_URL}${blog.image}`;
 
   // Schema: Article (BlogPosting)
   const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": blog.title,
-    "description": blog.excerpt,
-    "image": [`${siteUrl}${blog.image}`],
-    "datePublished": blog.date,
-    "dateModified": blog.date,
-    "author": {
-      "@type": "Organization",
-      "name": "MyMechanic Auto Care",
-      "url": siteUrl
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    'headline': blog.title,
+    'description': blog.excerpt,
+    'image': [blogImageUrl],
+    'datePublished': blog.date,
+    'dateModified': blog.date,
+    'author': {
+      '@type': 'Organization',
+      'name': COMPANY.legalName,
+      'url': SITE_URL,
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "MyMechanic Auto Care",
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${siteUrl}/logo.jpeg`
-      }
+    'publisher': {
+      '@type': 'AutoRepair',
+      'name': COMPANY.legalName,
+      'url': SITE_URL,
+      'logo': {
+        '@type': 'ImageObject',
+        'url': `${SITE_URL}/logo.jpeg`,
+      },
     },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `${siteUrl}/blog/${blog.slug}`
-    }
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}/blogs/${blog.slug}`,
+    },
   };
 
   // Schema: BreadcrumbList
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl },
-      { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${siteUrl}/blog` },
-      { "@type": "ListItem", "position": 3, "name": blog.title }
-    ]
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE_URL },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Blogs', 'item': `${SITE_URL}/blogs` },
+      { '@type': 'ListItem', 'position': 3, 'name': blog.title },
+    ],
   };
 
   return (
     <>
-      {/* Inject Schemas directly into HEAD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -126,7 +127,6 @@ export default async function BlogPostPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* Pass data to Client Component */}
       <BlogPostContent blog={blog} relatedPosts={relatedPosts} />
     </>
   );

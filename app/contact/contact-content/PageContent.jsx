@@ -105,7 +105,7 @@ export default function ContactContent() {
       <PageHeader
         title="Contact MyMechanic24"
         description="Doorstep car repair and washing across Indore. Central garage located on Nayta Mundla Main Road, serving Palda, Tejaji Nagar, and nearby areas."
-        image="/mymechanic_garage_indore.jpeg"
+        image="/car-repair.jpeg"
       />
 
       {/* Contact Info Cards */}
@@ -159,9 +159,12 @@ export default function ContactContent() {
             </div>
             <h3 className="font-bold text-foreground mb-1">Operational Hours</h3>
             <p className="text-foreground font-semibold text-xs mb-1">
-              8:00 AM – 8:00 PM (Daily)
+              Mon–Sat: 8:00 AM – 8:00 PM
             </p>
-            <span className="text-muted-foreground text-xs">Emergency Calls: 24/7 Available</span>
+            <p className="text-muted-foreground text-[11px] mb-1">
+              Sunday: 8:00 AM – 2:00 PM
+            </p>
+            <span className="text-emerald-500 font-bold text-xs">Emergency Calls: 24/7 Hotline</span>
           </div>
         </div>
       </section>

@@ -1,7 +1,10 @@
-export default function sitemap() {
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mymechanic24.vercel.app').trim().replace(/\/$/, '');
+import { blogs } from '@/data/blogs';
+import { SITE_URL } from '@/lib/constants';
 
-  return [
+export default function sitemap() {
+  const baseUrl = SITE_URL;
+
+  const staticRoutes = [
     {
       url: `${baseUrl}`,
       lastModified: new Date(),
@@ -44,42 +47,14 @@ export default function sitemap() {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
-    // Blog posts
-    {
-      url: `${baseUrl}/blogs/synthetic-vs-mineral-oil-change-interval-guide`,
-      lastModified: new Date('2024-02-01'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blogs/car-brake-failure-warning-signs`,
-      lastModified: new Date('2024-01-25'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blogs/how-to-increase-car-tyre-life-mileage`,
-      lastModified: new Date('2024-01-20'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blogs/doorstep-car-wash-subscription-indore-guide`,
-      lastModified: new Date('2024-01-15'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blogs/car-engine-overheating-symptoms-solutions-indore`,
-      lastModified: new Date('2024-01-10'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blogs/car-ac-cooling-problems-gas-refill-cost-indore`,
-      lastModified: new Date('2024-01-05'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
   ];
+
+  const blogRoutes = blogs.map((blog) => ({
+    url: `${baseUrl}/blogs/${blog.slug}`,
+    lastModified: new Date(blog.date || '2024-01-01'),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...blogRoutes];
 }

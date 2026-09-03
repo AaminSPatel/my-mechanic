@@ -41,7 +41,7 @@ export default function Footer() {
                           </div>
             </Link>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              {company?.description || "Indore's most trusted car repair service. We provide professional maintenance, diagnostics, and repairs with certified mechanics."}
+              {company?.description || "Indore's trusted auto garage & doorstep car repair partner. We provide certified mechanical repairs, computerized OBD-II diagnostics, genuine OEM parts, and high-pressure foam washing at your home or office."}
             </p>
             <div className="flex gap-4 pt-2">
               {[
@@ -70,11 +70,10 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               {[
                 { label: 'Home Page', href: '/' },
-                { label: 'Our Services', href: '/services' },
-                { label: 'About Company', href: '/about' },
-                { label: 'Latest News', href: '/blogs' },
-                { label: 'Contact Us', href: '/contact' },
-               /*  { label: 'INV', href: '/invoice' }, */
+                { label: 'Doorstep & Garage Services', href: '/services' },
+                { label: 'About MyMechanic24', href: '/about' },
+                { label: 'Car Maintenance Blogs', href: '/blogs' },
+                { label: 'Contact & Location', href: '/contact' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link 
@@ -98,11 +97,18 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-1" />
-                <span>Nayta Mundla Main Road, Near Palda & Tejaji Nagar, Indore, MP</span>
+                <a 
+                  href={company?.googleMapUrl || "https://maps.app.goo.gl/DeuQikRWUgCjJkTU6?g_st=ipc"} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-foreground transition leading-relaxed"
+                >
+                  Nayta Mundla Main Road, Near Palda & Tejaji Nagar, Indore, MP 452020
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <a href={`tel:${company?.phone || "+91 99778 23169"}`} className="hover:text-foreground font-bold transition">
+                <a href={`tel:${company?.phoneRaw || "+919977823169"}`} className="hover:text-foreground font-bold transition">
                   {company?.phone || "+91 99778 23169"}
                 </a>
               </li>
@@ -124,12 +130,17 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex justify-between items-center border-b border-border pb-2">
                 <span className="flex items-center gap-2"><Clock size={14} className="text-primary"/> Mon - Sat:</span>
-                <span className="text-foreground font-medium">{company?.hours?.weekday || "9:00 AM - 8:00 PM"}</span>
+                <span className="text-foreground font-medium">{company?.hours?.weekday || "8:00 AM - 8:00 PM"}</span>
               </li>
             
               <li className="flex justify-between items-center border-b border-border pb-2">
                 <span className="flex items-center gap-2"><Clock size={14} className="text-primary"/> Sunday:</span>
-                <span className="text-primary font-bold">{company?.hours?.sunday || "Open (Priority & Half Day)"}</span>
+                <span className="text-foreground font-medium">{company?.hours?.sunday || "8:00 AM - 2:00 PM"}</span>
+              </li>
+
+              <li className="flex justify-between items-center pt-1">
+                <span className="flex items-center gap-2"><Clock size={14} className="text-emerald-500"/> Emergency:</span>
+                <span className="text-emerald-500 font-bold text-xs">24/7 Breakdown Assistance</span>
               </li>
             </ul>
           </div>

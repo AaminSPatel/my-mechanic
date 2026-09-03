@@ -28,7 +28,7 @@ export default function Header() {
           {/* ================= LOGO (Image Style) ================= */}
           <Link href="/" className="flex items-center gap-1 flex-shrink-0 group">
             <div className="flex flex-col">
-              <Image src={'/logo.jpeg'} className='h-16 w-42 rounded-md' height={200} width={400} alt='Doorstep Auto Care Service in Indore'/>
+              <Image src={'/logo.jpeg'} className='h-16 w-42 rounded-md' height={200} width={400} alt='MyMechanic24 - Best Doorstep Car Repair & Washing in Indore'/>
             </div>
              {/* <div className="flex flex-col">
               <h1 className="text-3xl font-extrabold italic tracking-tighter text-primary">
@@ -60,14 +60,14 @@ export default function Header() {
             {/* Call Info (Hidden on Mobile) */}
             <div className="hidden md:flex flex-col items-end">
               <span className="text-[10px] text-muted-foreground uppercase font-semibold">
-                Call Today
+                Call Today (24/7 Hotline)
               </span>
               <a 
-                href={`tel:${company?.phone}`} 
+                href={`tel:${company?.phoneRaw || "+919977823169"}`} 
                 className="flex items-center gap-2 text-sm font-bold text-foreground hover:text-primary transition-colors"
               >
                 <Phone className="w-4 h-4 text-primary fill-primary" />
-                {company?.phone || "+91 98765 43210"}
+                {company?.phone || "+91 99778 23169"}
               </a>
             </div>
 

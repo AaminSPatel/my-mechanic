@@ -2,15 +2,17 @@
 
 import PageHeader from '@/components/PageHeader';
 import { useSiteContext } from '@/context/SiteContext';
+import { COMPANY } from '@/lib/constants';
 
 export default function TermsContent() {
-  const {company} = useSiteContext()
+  const { company } = useSiteContext();
+
   return (
     <div className="space-y-12 pb-20">
       {/* Page Header */}
       <PageHeader
         title="Terms & Conditions"
-        description="Please read these terms carefully before using our services."
+        description="Transparent service policies, genuine parts warranty, and customer rights at MyMechanic24 Auto Care."
         image="/car-wash.jpeg"
       />
 
@@ -19,92 +21,92 @@ export default function TermsContent() {
         <div className="space-y-8">
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Agreement to Terms</h2>
-            <p className="text-muted-foreground mb-4">
-              By accessing and using this website and our services, you accept and agree to be bound by the terms and
-              provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              By booking an appointment, scheduling a doorstep mobile visit, or utilizing garage facilities operated by{' '}
+              <strong>MyMechanic24 Auto Care</strong> (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services.
             </p>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">2. Use License</h2>
-            <p className="text-muted-foreground mb-4">
-              Permission is granted to temporarily download one copy of the materials (information or software) on
-              MyMechanic Auto Care&apos;s website for personal, non-commercial transitory viewing only. This is the grant of
-              a license, not a transfer of title, and under this license you may not:
+            <h2 className="text-2xl font-bold text-foreground mb-4">2. Digital Estimates &amp; Pre-Approval</h2>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              We operate on a strict zero-surprise billing policy:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-              <li>Modifying or copying the materials</li>
-              <li>Using the materials for any commercial purpose or for any public display</li>
-              <li>Attempting to decompile or reverse engineer any software contained on the website</li>
-              <li>Removing any copyright or other proprietary notations from the materials</li>
-              <li>Transferring the materials to another person or &quot;mirroring&quot; the materials on any other server</li>
+            <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 text-sm leading-relaxed">
+              <li>A digital job card and estimated quotation are generated following the initial multi-point vehicle inspection.</li>
+              <li>No mechanical work or parts replacement begins without explicit customer approval via WhatsApp, phone, or written confirmation.</li>
+              <li>Any newly discovered defects during disassembly are documented with high-definition photos or video proof before supplemental work commences.</li>
             </ul>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">3. Disclaimer</h2>
-            <p className="text-muted-foreground mb-4">
-              The materials on MyMechanic Auto Care&apos;s website are provided on an &apos;as is&apos; basis. MyMechanic Auto Care makes
-              no warranties, expressed or implied, and hereby disclaims and negates all other warranties including,
-              without limitation, implied warranties or conditions of merchantability, fitness for a particular
-              purpose, or non-infringement of intellectual property or other violation of rights.
+            <h2 className="text-2xl font-bold text-foreground mb-4">3. Spare Parts &amp; Workmanship Warranty</h2>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              MyMechanic24 Auto Care stands behind every wrench turned:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 text-sm leading-relaxed">
+              <li><strong>100% Genuine OEM/OES Parts:</strong> All replacement components are sourced from authorized original equipment manufacturers and carry official manufacturer warranties.</li>
+              <li><strong>Labor Warranty:</strong> All general mechanical repairs carry a 30-day or 1,000 km workmanship warranty (whichever comes first). Major engine and transmission overhauls carry up to 90 days or 5,000 km warranty.</li>
+              <li><strong>Old Parts Return:</strong> All replaced worn parts are packaged and returned to the customer upon delivery for verification.</li>
+              <li><strong>Exclusions:</strong> Warranty does not cover normal wear-and-tear items (wiper blades, clutch burnout due to aggressive driving, puncture damage), or vehicles subjected to racing or water immersion.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold text-foreground mb-4">4. Doorstep Service Protocol</h2>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              For on-site car repairs and snow foam washing in Indore:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4 text-sm leading-relaxed">
+              <li>Our mobile service van arrives equipped with an independent power generator, high-pressure water system, and specialized tools.</li>
+              <li>The vehicle owner must provide safe, legal parking access (driveway, society parking bay, or designated roadside area).</li>
+              <li>Repairs that require vehicle hoists (such as heavy suspension pressing, clutch gearbox drops, or engine lowering) cannot be completed at doorstep and will be routed to our central workshop on Nayta Mundla Main Road.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold text-foreground mb-4">5. Payments &amp; Invoicing</h2>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              Payments are due upon completion of the service and customer satisfaction check. We accept UPI (Google Pay, PhonePe, Paytm), Net Banking, Debit/Credit Cards, and Cash. A formal digital invoice is provided for every completed service.
             </p>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">4. Limitations</h2>
-            <p className="text-muted-foreground mb-4">
-              In no event shall MyMechanic Auto Care or its suppliers be liable for any damages (including, without
-              limitation, damages for loss of data or profit, or due to business interruption) arising out of the use
-              or inability to use the materials on MyMechanic Auto Care&apos;s website, even if MyMechanic Auto Care or an
-              authorized representative has been notified orally or in writing of the possibility of such damage.
+            <h2 className="text-2xl font-bold text-foreground mb-4">6. Limitation of Liability</h2>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              MyMechanic24 Auto Care takes utmost care with customer vehicles. However, we are not responsible for pre-existing internal fractures, electronic module failures caused by prior third-party tampering, or valuable personal items left unattended inside the passenger cabin. Customers are requested to remove valuables before service handover.
             </p>
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">5. Accuracy of Materials</h2>
-            <p className="text-muted-foreground mb-4">
-              The materials appearing on MyMechanic Auto Care&apos;s website could include technical, typographical, or
-              photographic errors. MyMechanic Auto Care does not warrant that any of the materials on its website are
-              accurate, complete, or current. MyMechanic Auto Care may make changes to the materials contained on its
-              website at any time without notice.
+            <h2 className="text-2xl font-bold text-foreground mb-4">7. Governing Law &amp; Jurisdiction</h2>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              These terms and conditions are governed by and construed in accordance with the laws of Madhya Pradesh, India. Any disputes arising in connection with our services shall be subject to the exclusive jurisdiction of the courts in Indore, MP.
             </p>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">6. Links</h2>
-            <p className="text-muted-foreground mb-4">
-              MyMechanic Auto Care has not reviewed all of the sites linked to its website and is not responsible for the
-              contents of any such linked site. The inclusion of any link does not imply endorsement by MyMechanic Auto
-              Care of the site. Use of any such linked website is at the user&apos;s own risk.
+          <div className="bg-secondary p-6 rounded-2xl border border-border">
+            <h3 className="font-bold text-foreground mb-2">Have Questions About Our Service Agreement?</h3>
+            <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+              Our customer care desk is available daily from 8:00 AM to 8:00 PM.
             </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">7. Modifications</h2>
-            <p className="text-muted-foreground mb-4">
-              MyMechanic Auto Care may revise these terms of service for its website at any time without notice. By using
-              this website, you are agreeing to be bound by the then current version of these terms of service.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">8. Governing Law</h2>
-            <p className="text-muted-foreground mb-4">
-              These terms and conditions are governed by and construed in accordance with the laws of Madhya Pradesh,
-              India, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.
-            </p>
-          </div>
-
-          <div className="bg-secondary p-6 rounded-lg border border-border">
-            <h3 className="font-bold text-foreground mb-2">Have Questions?</h3>
-            <p className="text-muted-foreground">
-              If you have any questions about these terms and conditions, please contact us at{' '}
-              <a href={`mailto:${company?.email}`} className="text-primary hover:text-red-700">
-                {company?.email}
-              </a>
-              .
-            </p>
+            <div className="text-xs text-muted-foreground space-y-1">
+              <p>
+                <strong className="text-foreground">Workshop Address:</strong> Nayta Mundla Main Road, Near Palda &amp; Tejaji Nagar, Indore, MP 452020
+              </p>
+              <p>
+                <strong className="text-foreground">Email:</strong>{' '}
+                <a href={`mailto:${company?.email || 'mymechanic.in@gmail.com'}`} className="text-primary hover:underline">
+                  {company?.email || 'mymechanic.in@gmail.com'}
+                </a>
+              </p>
+              <p>
+                <strong className="text-foreground">Direct Hotline:</strong>{' '}
+                <a href={`tel:${company?.phoneRaw || '+919977823169'}`} className="text-primary hover:underline">
+                  {company?.phone || '+91 99778 23169'}
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </section>

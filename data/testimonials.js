@@ -41,7 +41,7 @@ export const testimonials = [
   },
   {
     id: 5,
-    name: 'Momin Khan',
+    name: 'Moin Khan',
     vehicle: 'Mahindra Scorpio 2020',
     rating: 5,
     service: 'Suspension & Brake Repair',

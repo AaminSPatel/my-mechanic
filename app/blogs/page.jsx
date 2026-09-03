@@ -1,15 +1,49 @@
 import BlogsContent from './blogs-content/PageContent';
 import { blogs } from '@/data/blogs';
+import { SITE_URL, COMPANY, getCanonicalUrl } from '@/lib/constants';
 
 // ================= SEO METADATA =================
 export const metadata = {
-  title: 'Car Maintenance Blog | Expert Auto Repair Tips & Guides',
-  description: 'Discover essential car care tips, DIY maintenance guides, and expert auto repair advice. Learn how to increase mileage, fix common engine issues, and keep your vehicle in top condition on Indian roads.',
-  keywords: ['car maintenance tips', 'auto repair guide', 'increase car mileage', 'car ac service tips', 'DIY car care India', 'mechanic advice indore'],
+  title: 'Car Maintenance & Auto Repair Blog | Expert Tips by MyMechanic24 Indore',
+  description:
+    'Essential car maintenance guides, DIY auto care tips, and diagnostic advice tailored for Indian road conditions and Indore traffic. Learn how to increase fuel mileage, fix AC cooling issues, prevent brake failures, and prolong battery life.',
+  keywords: [
+    'car maintenance blog',
+    'auto repair tips indore',
+    'car mechanic advice indore',
+    'increase car mileage guide',
+    'car ac cooling problems',
+    'car brake failure signs',
+    'synthetic oil change interval',
+    'car battery maintenance winter',
+    'doorstep car care tips',
+  ],
+  alternates: {
+    canonical: getCanonicalUrl('/blogs'),
+  },
   openGraph: {
-    title: 'Car Maintenance Blog | Expert Auto Repair Tips',
-    description: 'Read expert guides on keeping your car running like new.',
+    title: 'Car Care & Auto Maintenance Blog | MyMechanic24 Indore',
+    description:
+      'Expert advice, diagnostic guides, and cost-saving maintenance tips from certified master mechanics at MyMechanic24 Indore.',
+    url: `${SITE_URL}/blogs`,
+    siteName: COMPANY.legalName,
+    images: [
+      {
+        url: `${SITE_URL}/oil-change.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: 'MyMechanic24 Car Maintenance and Auto Repair Blog',
+      },
+    ],
+    locale: 'en_IN',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MyMechanic24 Car Care & Repair Blog',
+    description:
+      'Expert diagnostic guides, mileage improvement hacks, and maintenance advice from Indore auto specialists.',
+    images: [`${SITE_URL}/oil-change.jpeg`],
   },
 };
 
@@ -18,20 +52,27 @@ export const revalidate = 3600;
 export default function BlogsPage() {
   // ================= STRUCTURED DATA (JSON-LD) =================
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Car Care & Maintenance Blog",
-    "description": "A collection of expert articles regarding car repair, maintenance, and automotive tips.",
-    "url": " https://mymechanic24.vercel.app/blog",
-    "mainEntity": {
-      "@type": "ItemList",
-      "itemListElement": blogs.map((blog, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "url": ` https://mymechanic24.vercel.app/blog/${blog.slug || blog.id}`,
-        "name": blog.title
-      }))
-    }
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    'name': 'Car Care & Automotive Repair Blog - MyMechanic24',
+    'description':
+      'Comprehensive collection of expert automotive guides, diagnostic advice, and DIY maintenance tips for Indian car owners.',
+    'url': `${SITE_URL}/blogs`,
+    'publisher': {
+      '@type': 'AutoRepair',
+      'name': COMPANY.legalName,
+      'url': SITE_URL,
+      'logo': `${SITE_URL}/logo.jpeg`,
+    },
+    'mainEntity': {
+      '@type': 'ItemList',
+      'itemListElement': blogs.map((blog, index) => ({
+        '@type': 'ListItem',
+        'position': index + 1,
+        'url': `${SITE_URL}/blogs/${blog.slug}`,
+        'name': blog.title,
+      })),
+    },
   };
 
   return (

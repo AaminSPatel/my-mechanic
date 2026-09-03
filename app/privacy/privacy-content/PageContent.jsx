@@ -20,8 +20,8 @@ export default function PrivacyContent() {
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Introduction</h2>
             <p className="text-muted-foreground mb-4">
-              MyMechanic Auto Care (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the website. This page informs you of our
-              policies regarding the collection, use, and disclosure of personal data when you use our Service and the
+              MyMechanic24 Auto Care (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) operates the automotive repair and doorstep service platform. This page informs you of our
+              policies regarding the collection, use, and disclosure of personal and vehicle data when you use our Service and the
               choices you have associated with that data.
             </p>
           </div>
@@ -29,20 +29,21 @@ export default function PrivacyContent() {
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Information Collection and Use</h2>
             <p className="text-muted-foreground mb-4">
-              We collect several different types of information for various purposes to provide and improve our Service
-              to you.
+              We collect several different types of information for various purposes to provide precision auto diagnostics and doorstep care
+              to you across Indore.
             </p>
             <h3 className="font-bold text-foreground mt-4 mb-2">Types of Data Collected:</h3>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
-              <li>Personal Data: Name, email address, phone number, vehicle information</li>
-              <li>Usage Data: Pages visited, access times, referrer information</li>
-              <li>Cookies and tracking technologies for site improvement</li>
+              <li>Personal Data: Name, email address, phone number, doorstep service address in Indore</li>
+              <li>Vehicle Data: Car make, model, year, registration number, mileage, and diagnostic fault history</li>
+              <li>Usage Data: Pages visited, access times, booking requests</li>
+              <li>Cookies and tracking technologies for website experience improvement</li>
             </ul>
           </div>
 
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Use of Data</h2>
-            <p className="text-muted-foreground mb-4">MyMechanic Auto Care uses the collected data for various purposes:</p>
+            <p className="text-muted-foreground mb-4">MyMechanic24 Auto Care uses the collected data for various operational purposes:</p>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground ml-4">
               <li>To provide and maintain our Service</li>
               <li>To notify you about changes to our Service</li>
@@ -74,23 +75,27 @@ export default function PrivacyContent() {
           <div>
             <h2 className="text-2xl font-bold text-foreground mb-4">Contact Us</h2>
             <p className="text-muted-foreground mb-4">
-              If you have any questions about this Privacy Policy, please contact us:
+              If you have any questions about this Privacy Policy, please contact our administrative team:
             </p>
             <div className="space-y-2 text-muted-foreground">
               <p>
+                <span className="font-semibold text-foreground">Company:</span>{' '}
+                MyMechanic24 Auto Care
+              </p>
+              <p>
                 <span className="font-semibold text-foreground">Email:</span>{' '}
-              <a href={`mailto:${company?.email}`} className="text-primary hover:text-red-700">
-                {company?.email}
-              </a>
+                <a href={`mailto:${company?.email || 'mymechanic.in@gmail.com'}`} className="text-primary hover:underline">
+                  {company?.email || 'mymechanic.in@gmail.com'}
+                </a>
               </p>
               <p>
                 <span className="font-semibold text-foreground">Phone:</span>{' '}
-                <a href={`tel:${company?.phone}`} className="text-primary hover:text-red-700">
-                {company?.phone}
-              </a>
+                <a href={`tel:${company?.phoneRaw || '+919977823169'}`} className="text-primary hover:underline">
+                  {company?.phone || '+91 99778 23169'}
+                </a>
               </p>
               <p>
-                <span className="font-semibold text-foreground">Location:</span> Indore, Madhya Pradesh
+                <span className="font-semibold text-foreground">Workshop Address:</span> Nayta Mundla Main Road, Near Palda &amp; Tejaji Nagar, Indore, Madhya Pradesh 452020
               </p>
             </div>
           </div>

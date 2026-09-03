@@ -37,8 +37,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-cards";
 import "@/styles/styles.css";
+import { motion, AnimatePresence } from "framer-motion";
 import QuickInquiryForm from "@/components/QuickInquiryForm";
-import InquiryPopup from "@/components/InquiryPopup";
 
 const WHATSAPP_NUMBER = "919977823169";
 
@@ -47,6 +47,14 @@ export default function HomeContent({
   testimonials = defaultTestimonials,
 }) {
   const [activeFaq, setActiveFaq] = useState(null);
+  const [showHeroForm, setShowHeroForm] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHeroForm(true);
+    }, 7000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -203,13 +211,11 @@ export default function HomeContent({
 
   return (
     <main className="w-full bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
-      {/* 7-Second Inquiry Popup */}
-      <InquiryPopup />
 
       {/* ================= HERO SECTION (SEO Optimized for Indore, Nayta Mundla, Palda, Tejaji Nagar & MyMechanic24) ================= */}
       <section className="relative min-h-[740px] lg:min-h-[680px] w-full overflow-hidden bg-background">
         {/* Background Image with Deep Radial & Dark Gradient Overlay */}
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 opacity-70">
           <Image
             src="/mechanic_inspecting_a_car.jpeg"
             alt="MyMechanic24 Doorstep car repair and washing in Nayta Mundla, Palda, Tejaji Nagar Indore"
@@ -221,8 +227,8 @@ export default function HomeContent({
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/85 to-background" />
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute top-1/2 -right-32 w-96 h-96 bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 -right-32 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6 py-12 lg:py-16 min-h-[740px] lg:min-h-[680px] flex items-center">
           <div className="grid lg:grid-cols-[1fr_390px] gap-12 lg:gap-16 items-center w-full">
@@ -272,12 +278,19 @@ export default function HomeContent({
 
               {/* CTA Group */}
               <div className="flex flex-wrap items-center gap-4">
-                <Link
-                  href="/contact"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-wider shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowHeroForm(true);
+                    setTimeout(() => {
+                      const el = document.getElementById("quick-inquiry");
+                      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                    }, 50);
+                  }}
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-wider shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                 >
                   Book Doorstep Service
-                </Link>
+                </button>
 
                 <a
                   href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
@@ -313,9 +326,62 @@ export default function HomeContent({
               </div>
             </div>
 
-            {/* QUICK INQUIRY FORM */}
-            <div className="relative">
-              <QuickInquiryForm />
+            {/* SINGLE HERO INQUIRY FORM (Reveals after 7 seconds or on CTA click) */}
+            <div className="relative min-h-[440px] flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                {showHeroForm ? (
+                  <motion.div
+                    key="quick-form"
+                    initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="w-full"
+                  >
+                    <QuickInquiryForm />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="hero-preview"
+                    initial={{ opacity: 0.9 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.35 }}
+                    className="w-full rounded-3xl border border-border/90 bg-card/90 p-6 md:p-8 backdrop-blur-2xl relative overflow-hidden text-center flex flex-col items-center justify-center shadow-2xl"
+                  >
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-red-500 to-amber-500" />
+                    
+                    <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4 ring-8 ring-primary/5">
+                      <Wrench size={28} />
+                    </div>
+
+                    <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-primary mb-2 bg-primary/10 px-3 py-1 rounded-full">
+                      <Sparkles size={12} /> Doorstep Care · Indore
+                    </div>
+
+                    <h3 className="text-xl font-black text-foreground mb-2">
+                      Doorstep Service Booking
+                    </h3>
+
+                    <p className="text-xs text-muted-foreground max-w-xs leading-relaxed mb-6">
+                      Mobile mechanic van reaches your home or office in Indore within 30–45 mins. 100% genuine OEM parts &amp; zero upfront fees.
+                    </p>
+
+                    <button
+                      type="button"
+                      onClick={() => setShowHeroForm(true)}
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3.5 px-6 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer hover:shadow-primary/30"
+                    >
+                      <Sparkles size={14} /> Open Booking Form
+                    </button>
+
+                    <div className="mt-4 flex items-center gap-2 text-[11px] text-muted-foreground">
+                      <Clock size={13} className="text-primary animate-pulse" />
+                      <span>Inquiry form opens automatically in 7 seconds</span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
@@ -1136,16 +1202,16 @@ export default function HomeContent({
                 </h3>
                 <div className="space-y-2 text-xs mb-6">
                   <div className="flex justify-between py-1 border-b border-border/60">
-                    <span className="text-muted-foreground">Doorstep Service</span>
+                    <span className="text-muted-foreground">Mon – Sat Garage &amp; Doorstep</span>
                     <span className="font-bold text-foreground">8:00 AM – 8:00 PM</span>
                   </div>
                   <div className="flex justify-between py-1 border-b border-border/60">
-                    <span className="text-muted-foreground">Nayta Mundla Garage</span>
-                    <span className="font-bold text-foreground">9:00 AM – 8:00 PM</span>
+                    <span className="text-muted-foreground">Sunday Hours</span>
+                    <span className="font-bold text-foreground">8:00 AM – 2:00 PM</span>
                   </div>
                   <div className="flex justify-between py-1 border-b border-border/60">
-                    <span className="text-muted-foreground">Emergency Help</span>
-                    <span className="font-bold text-primary">24/7 Available</span>
+                    <span className="text-muted-foreground">24/7 Breakdown Hotline</span>
+                    <span className="font-bold text-emerald-500">Always Available</span>
                   </div>
                 </div>
               </div>

@@ -180,27 +180,36 @@ export default function BlogsContent({ blogs }) {
               {/* Column 1 */}
               <div>
                 <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                   <TrendingUp className="text-primary" /> Why Regular Maintenance Matters?
+                   <TrendingUp className="text-primary" /> Why Regular Preventative Maintenance Matters
                 </h3>
-                <div className="prose prose-sm text-muted-foreground space-y-4">
-                   <p>Many car owners ignore minor signs like a <strong>squeaky brake</strong> or a <strong>vibrating steering wheel</strong> until it becomes a costly repair.</p>
-                   <ul className="list-disc pl-5 space-y-2">
-                      <li><strong>Fluid Checks:</strong> Regular oil changes prevent engine sludge.</li>
-                      <li><strong>Tyre Care:</strong> Proper alignment improves fuel efficiency by up to 10%.</li>
+                <div className="text-sm text-muted-foreground space-y-4 leading-relaxed">
+                   <p>Most catastrophic automotive breakdowns start as minor, easily fixable symptoms that were ignored—a slight <strong>squeak on cold braking</strong>, a subtle <strong>vibration in the steering at 60 km/h</strong>, or a minor drop in fuel mileage.</p>
+                   <ul className="list-disc pl-5 space-y-2.5">
+                      <li><strong>Fluid Viscosity Breakdown:</strong> In Indore's searing summer heat (40°C+), motor oil and transmission fluids experience severe thermal breakdown. Regular changes safeguard your engine from sludge and expensive crankshaft repairs.</li>
+                      <li><strong>Precision Tyre Alignment:</strong> Potholes and expansion joints on the Ring Road and Super Corridor alter wheel toe angles. Proper 5,000 km alignment extends tyre life by up to 25,000 km.</li>
+                      <li><strong>Brake Rotor Glazing:</strong> Timely brake caliper cleaning prevents brake pads from overheating and scoring delicate cast-iron disc rotors.</li>
                    </ul>
                 </div>
               </div>
               {/* Column 2 */}
               <div>
                 <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-                   <AlertTriangle className="text-primary" /> Common Car Issues in India
+                   <AlertTriangle className="text-primary" /> Common Driving Challenges in Central India
                 </h3>
-                <div className="prose prose-sm text-muted-foreground space-y-4">
-                   <p>Indian road conditions put specific stress on vehicles. Here is what you should watch out for:</p>
-                   <div className="space-y-4 mt-4">
-                      <div className="bg-background p-4 rounded-lg border border-border">
-                         <h4 className="font-bold text-foreground mb-1">Suspension Wear</h4>
-                         <p className="text-xs">Frequent driving on damaged roads can damage shock absorbers.</p>
+                <div className="text-sm text-muted-foreground space-y-4 leading-relaxed">
+                   <p>Daily driving across Indore, Dewas, and Ujjain puts specific stress factors on your vehicle:</p>
+                   <div className="space-y-3 mt-4">
+                      <div className="bg-card p-4 rounded-xl border border-border">
+                         <h4 className="font-bold text-foreground mb-1 text-sm">Suspension &amp; Link Rod Wear</h4>
+                         <p className="text-xs text-muted-foreground">Monsoon potholes and unpaved bypass roads cause premature degradation of rubber stabilizer bushes and lower ball joints.</p>
+                      </div>
+                      <div className="bg-card p-4 rounded-xl border border-border">
+                         <h4 className="font-bold text-foreground mb-1 text-sm">Choked Air &amp; Cabin Pollen Filters</h4>
+                         <p className="text-xs text-muted-foreground">High ambient construction dust clogs paper filter pleats, starving the engine of clean air and causing up to a 15% drop in mileage.</p>
+                      </div>
+                      <div className="bg-card p-4 rounded-xl border border-border">
+                         <h4 className="font-bold text-foreground mb-1 text-sm">Sudden Battery Cell Sulfation</h4>
+                         <p className="text-xs text-muted-foreground">Intense under-hood heat boils battery electrolyte, causing sudden no-crank failures on busy mornings.</p>
                       </div>
                    </div>
                 </div>
@@ -214,16 +223,16 @@ export default function BlogsContent({ blogs }) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
             <div>
-              <h2 className="text-4xl font-black text-foreground italic uppercase leading-none mb-4">
-                Need Expert <span className="text-primary">Advice?</span>
+              <h2 className="text-3xl sm:text-4xl font-black text-foreground italic uppercase leading-none mb-4">
+                Need Certified <span className="text-primary">Mechanic Advice?</span>
               </h2>
-              <p className="text-muted-foreground max-w-lg">
-                Direct access to our senior mechanics. Whether it's a breakdown or a quote, we are just one tap away.
+              <p className="text-muted-foreground max-w-lg text-sm sm:text-base">
+                Direct access to our master technicians. Whether you need roadside breakdown assistance or a repair estimate, we are just one tap away.
               </p>
             </div>
             <div className="flex gap-6 text-xs font-bold text-muted-foreground uppercase tracking-widest">
               <div className="flex items-center gap-2">
-                <ShieldCheck size={16} className="text-primary" /> Verified Pros
+                <ShieldCheck size={16} className="text-primary" /> Certified Pros
               </div>
               <div className="flex items-center gap-2">
                 <Clock size={16} className="text-primary" /> 10 Min Response
@@ -233,8 +242,11 @@ export default function BlogsContent({ blogs }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <a 
-              href={`https://wa.me/${company.whatsapp.replace(/[^0-9]/g, '')}`} 
+              href={`https://wa.me/${(company?.whatsappNumber || '919977823169').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+                'Hi MyMechanic24, I need advice or a repair quote for my car in Indore.'
+              )}`} 
               target="_blank"
+              rel="noopener noreferrer"
               className="group relative bg-card hover:bg-[#25D366]/5 border border-border hover:border-[#25D366]/50 p-8 rounded-2xl transition-all duration-500 flex flex-col justify-between h-64"
             >
               <div className="absolute top-6 right-6 p-3 bg-background border border-border rounded-full group-hover:scale-110 transition-transform">
@@ -247,13 +259,13 @@ export default function BlogsContent({ blogs }) {
                 <h3 className="text-2xl font-bold text-foreground">Get Quote via WhatsApp</h3>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground mb-1 group-hover:text-foreground transition-colors">Best for:</p>
-                <p className="text-sm font-medium text-foreground">Sharing photos of dents, scratches, or bill estimates.</p>
+                <p className="text-xs text-muted-foreground mb-1 group-hover:text-foreground transition-colors uppercase tracking-wider font-semibold">Best for:</p>
+                <p className="text-sm font-medium text-foreground">Sharing photos of warning lights, noises, or getting second opinions.</p>
               </div>
             </a>
 
             <a 
-              href={`tel:${company.phone.replace(/[^0-9]/g, '')}`}
+              href={`tel:${(company?.phoneRaw || '+919977823169').replace(/[^0-9]/g, '')}`}
               className="group relative bg-card hover:bg-primary/5 border border-border hover:border-primary/50 p-8 rounded-2xl transition-all duration-500 flex flex-col justify-between h-64"
             >
               <div className="absolute top-6 right-6 p-3 bg-background border border-border rounded-full group-hover:scale-110 transition-transform">
@@ -263,11 +275,11 @@ export default function BlogsContent({ blogs }) {
                 <div className="w-14 h-14 bg-primary/10 text-primary rounded-xl flex items-center justify-center">
                    <Phone size={28} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground">Emergency Call 24/7</h3>
+                <h3 className="text-2xl font-bold text-foreground">24/7 Breakdown Hotline</h3>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground mb-1 group-hover:text-foreground transition-colors">Best for:</p>
-                <p className="text-sm font-medium text-foreground">Breakdowns, engine overheating, or urgent booking.</p>
+                <p className="text-xs text-muted-foreground mb-1 group-hover:text-foreground transition-colors uppercase tracking-wider font-semibold">Best for:</p>
+                <p className="text-sm font-medium text-foreground">Urgent jumpstarts, towing, overheating, or instant doorstep bookings.</p>
               </div>
             </a>
           </div>

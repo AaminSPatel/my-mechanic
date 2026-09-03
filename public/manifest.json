@@ -1,0 +1,28 @@
+{
+  "name": "MyMechanic24 - Doorstep Car Repair & Washing in Indore",
+  "short_name": "MyMechanic24",
+  "description": "Professional doorstep car repair, computerized diagnostics, and home high-pressure foam washing in Indore. Workshop on Nayta Mundla Main Road.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#dc2626",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-light-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon.jpeg",
+      "sizes": "180x180",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/logo.jpeg",
+      "sizes": "400x200",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

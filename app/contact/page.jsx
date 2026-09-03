@@ -1,8 +1,10 @@
 import ContactContent from './contact-content/PageContent';
+import { SITE_URL, COMPANY, getCanonicalUrl } from '@/lib/constants';
 
 export const metadata = {
   title: 'Contact MyMechanic24 | Doorstep Car Repair & Washing in Indore | Nayta Mundla Garage',
-  description: 'Contact MyMechanic24 for emergency breakdown assistance, doorstep car repair, computerized diagnostics, and home car wash in Indore. Central garage on Nayta Mundla Main Road, serving Palda, Tejaji Nagar, and nearby areas. Call +91 99778 23169.',
+  description:
+    'Contact MyMechanic24 for emergency breakdown assistance, doorstep car repair, computerized diagnostics, and home car wash in Indore. Central garage on Nayta Mundla Main Road, serving Palda, Tejaji Nagar, and nearby areas. Call +91 99778 23169.',
   keywords: [
     'contact MyMechanic24',
     'car repair nayta mundla main road',
@@ -14,13 +16,31 @@ export const metadata = {
     'auto garage nayta mundla indore',
   ],
   alternates: {
-    canonical: 'https://mymechanic24.vercel.app/contact',
+    canonical: getCanonicalUrl('/contact'),
   },
   openGraph: {
     title: 'Contact MyMechanic24 Auto Care Indore',
-    description: 'Book doorstep car repair, home car washing, or schedule a workshop visit on Nayta Mundla Main Road, Indore. Quick assistance on WhatsApp and phone.',
-    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://mymechanic24.vercel.app'}/contact`,
+    description:
+      'Book doorstep car repair, home car washing, or schedule a workshop visit on Nayta Mundla Main Road, Indore. Quick assistance on WhatsApp and phone.',
+    url: `${SITE_URL}/contact`,
+    siteName: COMPANY.legalName,
+    images: [
+      {
+        url: `${SITE_URL}/mymechanic_garage_indore.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: 'MyMechanic24 Workshop and Contact Desk Indore',
+      },
+    ],
+    locale: 'en_IN',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact MyMechanic24 - Car Repair Indore',
+    description:
+      'Contact our central workshop on Nayta Mundla Main Road or book 30-min mobile doorstep service across Indore.',
+    images: [`${SITE_URL}/mymechanic_garage_indore.jpeg`],
   },
 };
 
@@ -28,10 +48,8 @@ export const revalidate = 3600;
 
 export default function ContactPage() {
   return (
-    <>
-      <main className="min-h-screen">
-        <ContactContent />
-      </main>
-    </>
+    <main className="min-h-screen">
+      <ContactContent />
+    </main>
   );
 }

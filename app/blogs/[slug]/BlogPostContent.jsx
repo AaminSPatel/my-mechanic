@@ -12,13 +12,19 @@ import {
   User,
   Facebook,
   Twitter,
+  MapPin,
+  Sparkles,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { useSiteContext } from "@/context/SiteContext";
+import { SITE_URL, COMPANY } from "@/lib/constants";
 
-export default function BlogPostContent({ blog, relatedPosts }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL; // Same domain
+export default function BlogPostContent({ blog, relatedPosts = [] }) {
   const { company } = useSiteContext();
+
+  const shareUrl = `${SITE_URL}/blogs/${blog.slug}`;
+  const phoneDigits = (company?.phoneRaw || "+919977823169").replace(/[^0-9]/g, "");
+  const whatsappDigits = (company?.whatsappNumber || "919977823169").replace(/[^0-9]/g, "");
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -30,10 +36,10 @@ export default function BlogPostContent({ blog, relatedPosts }) {
           </Link>
           <span>/</span>
           <Link href="/blogs" className="hover:text-primary transition-colors">
-            Blog
+            Blogs
           </Link>
           <span>/</span>
-          <span className="text-primary font-medium truncate max-w-[200px]">
+          <span className="text-primary font-medium truncate max-w-[200px] sm:max-w-[350px]">
             {blog.title}
           </span>
         </div>
@@ -42,7 +48,7 @@ export default function BlogPostContent({ blog, relatedPosts }) {
       {/* Page Header */}
       <PageHeader
         title={blog.title}
-        description={''}
+        description=""
         image={blog.image}
       />
 
@@ -78,26 +84,35 @@ export default function BlogPostContent({ blog, relatedPosts }) {
                 </span>
                 <div className="flex gap-2">
                   <a
-                    href={`https://wa.me/?text=${blog.title} - ${siteUrl}/blog/${blog.slug}`}
+                    href={`https://wa.me/?text=${encodeURIComponent(
+                      `${blog.title} - ${shareUrl}`
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-[#25D366] transition-colors"
+                    className="text-muted-foreground hover:text-[#25D366] transition-colors p-1.5 rounded-md hover:bg-secondary"
+                    aria-label="Share on WhatsApp"
                   >
                     <FaWhatsapp size={16} />
                   </a>
                   <a
-                    href={`https://twitter.com/intent/tweet?text=${blog.title}&url=${siteUrl}/blog/${blog.slug}`}
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                      blog.title
+                    )}&url=${encodeURIComponent(shareUrl)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-blue-400 transition-colors"
+                    className="text-muted-foreground hover:text-blue-400 transition-colors p-1.5 rounded-md hover:bg-secondary"
+                    aria-label="Share on Twitter"
                   >
                     <Twitter size={16} />
                   </a>
                   <a
-                    href={`https://www.facebook.com/sharer/sharer.php?u=${siteUrl}/blog/${blog.slug}`}
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                      shareUrl
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-blue-600 transition-colors"
+                    className="text-muted-foreground hover:text-blue-600 transition-colors p-1.5 rounded-md hover:bg-secondary"
+                    aria-label="Share on Facebook"
                   >
                     <Facebook size={16} />
                   </a>
@@ -119,20 +134,21 @@ export default function BlogPostContent({ blog, relatedPosts }) {
                 <User size={24} />
               </div>
               <div>
-                <p className="text-sm font-bold text-foreground uppercase tracking-widest">
-                  Written By
+                <p className="text-xs font-bold text-foreground uppercase tracking-widest">
+                  Written &amp; Verified By
                 </p>
-                <p className="font-bold text-lg">MyMechanic Auto Experts</p>
+                <p className="font-bold text-base text-foreground">
+                  MyMechanic24 Master Mechanics
+                </p>
                 <p className="text-xs text-muted-foreground">
-                  Certified team of mechanics with 10+ years of experience in
-                  Indore.
+                  Certified team of automotive engineers and technicians based on Nayta Mundla Main Road, Indore.
                 </p>
               </div>
             </div>
           </div>
 
           {/* Navigation: Back to Blog */}
-          <div className="mt-8">
+          <div className="mt-8 flex justify-between items-center">
             <Link
               href="/blogs"
               className="inline-flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-primary transition-colors uppercase tracking-widest"
@@ -140,36 +156,62 @@ export default function BlogPostContent({ blog, relatedPosts }) {
               <ArrowLeft className="w-4 h-4" />
               View All Articles
             </Link>
+            <Link
+              href="/services"
+              className="text-xs text-primary font-bold uppercase tracking-wider hover:underline"
+            >
+              Explore Our Services &rarr;
+            </Link>
           </div>
         </article>
 
         {/* Sidebar Area (4 Cols) */}
         <aside className="lg:col-span-4 space-y-8">
           {/* CTA Widget */}
-          <div className="bg-primary text-primary-foreground rounded-2xl p-6 relative overflow-hidden">
+          <div className="bg-gradient-to-br from-primary via-red-700 to-red-900 text-white rounded-2xl p-6 relative overflow-hidden shadow-xl">
             <div className="relative z-10">
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-full mb-3">
+                <Sparkles size={12} /> Doorstep Care in Indore
+              </span>
               <h3 className="text-xl font-black uppercase italic mb-2">
-                Issue with your car?
+                Facing Car Trouble?
               </h3>
-              <p className="text-sm opacity-90 mb-6">
-                Don't ignore the signs mentioned in this article. Get a free
-                checkup today.
+              <p className="text-xs opacity-90 mb-6 leading-relaxed">
+                Don&apos;t ignore the warning signs mentioned in this article. Our mobile van reaches your home or office in Indore within 30–45 minutes.
               </p>
               <a
-                href={`tel:${company.phone.replace(/[^0-9]/g, "")}`}
-                className="flex items-center justify-center gap-2 bg-background text-foreground w-full py-3 rounded-lg font-bold uppercase text-xs tracking-widest hover:bg-white/90 transition-colors"
+                href={`tel:${phoneDigits}`}
+                className="flex items-center justify-center gap-2 bg-white text-primary w-full py-3.5 rounded-xl font-bold uppercase text-xs tracking-widest hover:bg-gray-100 transition-all shadow-md"
               >
-                <Phone size={16} /> Call Expert
+                <Phone size={16} /> Call +91 99778 23169
               </a>
             </div>
-            <ShieldCheck className="absolute -bottom-6 -right-6 w-32 h-32 opacity-10 rotate-12" />
+            <ShieldCheck className="absolute -bottom-6 -right-6 w-32 h-32 opacity-15 rotate-12" />
+          </div>
+
+          {/* Workshop Location Card */}
+          <div className="bg-card border border-border rounded-2xl p-5 shadow-sm">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase text-primary mb-2">
+              <MapPin size={14} /> Central Garage
+            </div>
+            <h4 className="font-bold text-foreground text-sm mb-1">
+              MyMechanic24 Workshop
+            </h4>
+            <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+              Nayta Mundla Main Road, Near Palda &amp; Tejaji Nagar, Indore, MP 452020
+            </p>
+            <p className="text-[11px] text-muted-foreground border-t border-border/50 pt-2">
+              Open Daily 8:00 AM – 8:00 PM | 24/7 Breakdown Hotline
+            </p>
           </div>
 
           {/* Related Posts Widget */}
           {relatedPosts.length > 0 && (
-            <div className="bg-card border border-border rounded-2xl overflow-hidden">
+            <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
               <div className="p-4 border-b border-border bg-secondary/30">
-                <h3 className="font-bold text-foreground">Related Articles</h3>
+                <h3 className="font-bold text-foreground text-sm uppercase tracking-wide">
+                  Related Guides
+                </h3>
               </div>
               <div className="divide-y divide-border">
                 {relatedPosts.map((post) => (
@@ -178,10 +220,10 @@ export default function BlogPostContent({ blog, relatedPosts }) {
                     href={`/blogs/${post.slug}`}
                     className="block p-4 hover:bg-secondary/20 transition-colors group"
                   >
-                    <h4 className="text-sm font-bold text-foreground mb-1 group-hover:text-primary line-clamp-2">
+                    <h4 className="text-sm font-bold text-foreground mb-1 group-hover:text-primary line-clamp-2 leading-snug">
                       {post.title}
                     </h4>
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
                       <Clock size={12} /> {post.readTime}
                     </div>
                   </Link>
@@ -192,17 +234,19 @@ export default function BlogPostContent({ blog, relatedPosts }) {
 
           {/* WhatsApp Widget */}
           <a
-            href={`https://wa.me/${company.whatsapp.replace(/[^0-9]/g, "")}`}
+            href={`https://wa.me/${whatsappDigits}?text=${encodeURIComponent(
+              `Hi MyMechanic24, I read your article "${blog.title}" and would like advice on my car in Indore.`
+            )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block bg-[#25D366]/10 border border-[#25D366]/30 hover:border-[#25D366] p-6 rounded-2xl transition-all text-center"
+            className="group block bg-[#25D366]/10 border border-[#25D366]/30 hover:border-[#25D366] p-6 rounded-2xl transition-all text-center shadow-sm"
           >
-            <div className="w-10 h-10 mx-auto bg-[#25D366] text-white rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-              <FaWhatsapp size={20} />
+            <div className="w-12 h-12 mx-auto bg-[#25D366] text-white rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform shadow-md">
+              <FaWhatsapp size={22} />
             </div>
-            <h3 className="font-bold text-foreground">Have a Query?</h3>
-            <p className="text-xs text-muted-foreground">
-              Chat directly with the author of this post.
+            <h3 className="font-bold text-foreground text-sm">Have a Technical Question?</h3>
+            <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+              Chat directly with our master mechanics on WhatsApp.
             </p>
           </a>
         </aside>
