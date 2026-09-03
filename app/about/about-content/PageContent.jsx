@@ -45,7 +45,7 @@ export default function AboutContent({ team }) {
           <div className="relative h-[500px] w-full group">
             <div className="absolute inset-0 bg-primary/20 rounded-2xl transform rotate-3 group-hover:rotate-0 transition-all duration-500"></div>
             <Image
-              src="/washing-car.jpeg" 
+              src="/mymechanic_4.png" 
               alt="MyMechanic Workshop Inside View Indore"
               fill
               className="object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-700 shadow-2xl"
@@ -113,8 +113,8 @@ export default function AboutContent({ team }) {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-white/10">
             {[
-              { number: '15+', label: 'Years Legacy' },
-              { number: '10k+', label: 'Cars Repaired' },
+              { number: '5+', label: 'Years Legacy' },
+              { number: '1k+', label: 'Cars Repaired' },
               { number: '100%', label: 'Genuine Parts' },
               { number: '4.8', label: 'Google Rating' },
             ].map((stat, idx) => (
@@ -144,7 +144,7 @@ export default function AboutContent({ team }) {
               Ready to Experience <br/> the Difference?
             </h2>
             <p className="text-lg text-white/90 mb-10 leading-relaxed font-medium">
-              Join the family of 10,000+ satisfied car owners in Indore. Experience honest pricing, transparency, and technical excellence today.
+              Join the family of 1,000+ satisfied car owners in Indore. Experience honest pricing, transparency, and technical excellence today.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

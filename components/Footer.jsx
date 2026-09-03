@@ -74,7 +74,7 @@ export default function Footer() {
                 { label: 'About Company', href: '/about' },
                 { label: 'Latest News', href: '/blogs' },
                 { label: 'Contact Us', href: '/contact' },
-                { label: 'INV', href: '/invoice' },
+               /*  { label: 'INV', href: '/invoice' }, */
               ].map((link) => (
                 <li key={link.href}>
                   <Link 
@@ -98,18 +98,18 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-1" />
-                <span>{company?.location || "Scheme No 54, Vijay Nagar, Indore, MP"}</span>
+                <span>Nayta Mundla Main Road, Near Palda & Tejaji Nagar, Indore, MP</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <a href={`tel:${company?.phone}`} className="hover:text-foreground font-bold transition">
-                  {company?.phone || "+91 98765 43210"}
+                <a href={`tel:${company?.phone || "+91 99778 23169"}`} className="hover:text-foreground font-bold transition">
+                  {company?.phone || "+91 99778 23169"}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <a href={`mailto:${company?.email}`} className="hover:text-foreground transition">
-                  {company?.email || "support@carrepair.com"}
+                <a href={`mailto:${company?.email || "mymechanic.in@gmail.com"}`} className="hover:text-foreground transition">
+                  {company?.email || "mymechanic.in@gmail.com"}
                 </a>
               </li>
             </ul>
@@ -124,12 +124,12 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex justify-between items-center border-b border-border pb-2">
                 <span className="flex items-center gap-2"><Clock size={14} className="text-primary"/> Mon - Sat:</span>
-                <span className="text-foreground font-medium">{company?.hours?.weekday || "9:00 - 20:00"}</span>
+                <span className="text-foreground font-medium">{company?.hours?.weekday || "9:00 AM - 8:00 PM"}</span>
               </li>
             
               <li className="flex justify-between items-center border-b border-border pb-2">
                 <span className="flex items-center gap-2"><Clock size={14} className="text-primary"/> Sunday:</span>
-                <span className="text-primary font-bold">{company?.hours?.sunday || "Open (Half Day)"}</span>
+                <span className="text-primary font-bold">{company?.hours?.sunday || "Open (Priority & Half Day)"}</span>
               </li>
             </ul>
           </div>
@@ -139,12 +139,24 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-border bg-card">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium uppercase tracking-wide">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium tracking-wide">
           <p className="opacity-75">
-            &copy; {currentYear} <span className="text-foreground">{company?.name}</span>. All rights reserved.
+            &copy; {currentYear} <span className="text-foreground font-semibold">MyMechanic24</span>. All rights reserved.
           </p>
           
-          <div className="flex items-center gap-6">
+          <p className="text-xs text-muted-foreground flex items-center gap-1.5 normal-case">
+            Created with <span className="text-red-500 text-sm">❤️</span> by{" "}
+            <a
+              href="https://business-sathi.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground font-bold hover:text-primary transition-colors underline underline-offset-4"
+            >
+              Business Sathi
+            </a>
+          </p>
+
+          <div className="flex items-center gap-6 uppercase text-xs">
             <Link href="/terms" className="hover:text-primary transition-colors">
               Terms & Conditions
             </Link>

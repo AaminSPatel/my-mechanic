@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /invoice
+Disallow: /api/
 
-Sitemap: https://my-mechanic-iota.vercel.app/sitemap.xml
+Sitemap: https://mymechanic24.vercel.app/sitemap.xml

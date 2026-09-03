@@ -123,3 +123,79 @@
   }
 }
 
+
+/* Marquee animation */
+.marquee-wrap {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Phone mockup */
+.phone-mock {
+  width: 220px;
+  height: 400px;
+  border-radius: 32px;
+  border: 6px solid hsl(var(--border));
+  background: hsl(var(--card));
+  position: relative;
+  padding: 20px 14px;
+}
+
+.phone-notch {
+  width: 70px;
+  height: 16px;
+  border-radius: 10px;
+  background: hsl(var(--border));
+  margin: 0 auto 24px;
+}
+
+.phone-notification {
+  background: hsl(var(--secondary));
+  border: 1px solid hsl(var(--border));
+  border-radius: 14px;
+  padding: 14px;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Text stroke effect */
+.stroke-text {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  text-shadow: none;
+}
+
+.group:hover .stroke-text {
+  -webkit-text-stroke: 1px hsl(var(--primary));
+}

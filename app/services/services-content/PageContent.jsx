@@ -9,7 +9,6 @@ import {
   Clock,
   CheckCircle2,
   MapPin,
-  ShieldCheck,
   Sparkles,
   Plus,
   Minus,
@@ -74,7 +73,7 @@ export default function ServicesContent({ services }) {
       <PageHeader
         title="Best Doorstep Car Repair & Washing Services in Indore"
         description="Get professional car care at your home or office. From doorstep foam washing to emergency repairs, we bring the garage to you in Indore."
-        image="/oil-change.jpeg"
+        image="/car_washing_indore_mymechanic.jpeg"
       />
 
       {/* ================= INTRODUCTION SECTION ================= */}

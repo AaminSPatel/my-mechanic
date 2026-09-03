@@ -1,18 +1,12 @@
 export default function sitemap() {
-  const baseUrl = ' https://mymechanic24.vercel.app';
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mymechanic24.vercel.app').trim().replace(/\/$/, '');
 
   return [
     {
-      url: baseUrl,
+      url: `${baseUrl}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/services`,
@@ -21,16 +15,22 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/blogs`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
     },
     {
       url: `${baseUrl}/privacy`,
@@ -59,25 +59,25 @@ export default function sitemap() {
     },
     {
       url: `${baseUrl}/blogs/how-to-increase-car-tyre-life-mileage`,
-      lastModified: new Date('2024-01-18'),
+      lastModified: new Date('2024-01-20'),
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/blogs/car-battery-maintenance-tips-winter`,
+      url: `${baseUrl}/blogs/doorstep-car-wash-subscription-indore-guide`,
+      lastModified: new Date('2024-01-15'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/blogs/car-engine-overheating-symptoms-solutions-indore`,
       lastModified: new Date('2024-01-10'),
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/blogs/car-dashboard-warning-lights-meaning-guide`,
+      url: `${baseUrl}/blogs/car-ac-cooling-problems-gas-refill-cost-indore`,
       lastModified: new Date('2024-01-05'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blogs/dirty-air-filter-symptoms-mileage-drop`,
-      lastModified: new Date('2023-12-28'),
       changeFrequency: 'monthly',
       priority: 0.6,
     },
