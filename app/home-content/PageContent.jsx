@@ -215,9 +215,9 @@ export default function HomeContent({
       {/* ================= HERO SECTION (SEO Optimized for Indore, Nayta Mundla, Palda, Tejaji Nagar & MyMechanic24) ================= */}
       <section className="relative min-h-[740px] lg:min-h-[680px] w-full overflow-hidden bg-background">
         {/* Background Image with Deep Radial & Dark Gradient Overlay */}
-        <div className="absolute inset-0 opacity-70">
+        <div className="absolute inset-0 opacity-90">
           <Image
-            src="/mechanic_inspecting_a_car.jpeg"
+            src="/mechanic_inspecting_a_car.avif"
             alt="MyMechanic24 Doorstep car repair and washing in Nayta Mundla, Palda, Tejaji Nagar Indore"
             fill
             priority
@@ -226,7 +226,7 @@ export default function HomeContent({
           />
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/85 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/90 to-background" />
         <div className="absolute -top-32 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute top-1/2 -right-32 w-96 h-96 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
 
@@ -708,10 +708,10 @@ export default function HomeContent({
         </div>
       </section>
 
-      {/* ================= FIXED BACKGROUND PARALLAX SECTION (Uses /mymechanic_3.png) ================= */}
+      {/* ================= FIXED BACKGROUND PARALLAX SECTION (Uses /mymechanic_3.avif) ================= */}
       <section
         className="relative py-28 bg-fixed bg-center bg-cover border-y border-border"
-        style={{ backgroundImage: `url('/mymechanic_3.png')` }}
+        style={{ backgroundImage: `url('/mymechanic_3.avif')` }}
       >
         {/* Deep Translucent Dark Backdrop */}
         <div className="absolute inset-0 bg-black/85 backdrop-blur-xs" />
@@ -969,7 +969,7 @@ export default function HomeContent({
 
               <div className="relative h-72 sm:h-80 w-full rounded-2xl overflow-hidden border border-border">
                 <Image
-                  src="/mymechanic_garage_indore.jpeg"
+                  src="/mymechanic_garage_indore.avif"
                   alt="MyMechanic24 Garage Facility on Nayta Mundla Main Road Indore"
                   fill
                   className="object-cover"

@@ -1,14 +1,15 @@
 import InvoiceContent from './InvoiceContent';
 
 export const metadata = {
-  title: 'Invoice Generator | MyMechanic Auto Care',
-  description: 'Generate and download car service receipts as images. Professional invoice creator for auto garage services.',
-  keywords: ['invoice generator', 'car service receipt', 'auto repair bill', 'download receipt'],
+  title: 'Service Bill Generator | MyMechanic24 Auto Care',
+  description:
+    'Generate, download, and print official car service receipts, job sheets, and cash bills. Professional service bill creator for MyMechanic24 Indore.',
+  keywords: ['service bill generator', 'car repair bill', 'car service cash memo', 'download receipt'],
 };
 
 export default function InvoicePage() {
   return (
-    <main className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-background py-8">
       <InvoiceContent />
     </main>
   );
