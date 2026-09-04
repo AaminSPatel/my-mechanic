@@ -173,7 +173,7 @@ export default function RootLayout({ children }) {
           src="https://cdn.counter.dev/script.js" 
           data-id="f7f1820c-0edc-4ef0-8dd4-1745e73e696f" 
           data-utcoffset="6"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>

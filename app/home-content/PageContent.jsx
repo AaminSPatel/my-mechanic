@@ -30,14 +30,31 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { testimonials as defaultTestimonials } from "@/data/testimonials";
-import { services as defaultServices } from "@/data/services";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectCards } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-cards";
-import "@/styles/styles.css";
-import { motion, AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
+const ServicesMobileSwiper = dynamic(
+  () => import("@/components/home/ServicesMobileSwiper"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="md:hidden w-full h-[460px] rounded-2xl bg-card border border-border animate-pulse flex items-center justify-center text-xs text-muted-foreground">
+        Loading services...
+      </div>
+    ),
+  }
+);
+
+const TestimonialsSwiper = dynamic(
+  () => import("@/components/home/TestimonialsSwiper"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-64 rounded-2xl bg-card border border-border animate-pulse flex items-center justify-center text-xs text-muted-foreground">
+        Loading customer reviews...
+      </div>
+    ),
+  }
+);
+
 import QuickInquiryForm from "@/components/QuickInquiryForm";
 
 const WHATSAPP_NUMBER = "919977823169";
@@ -221,6 +238,8 @@ export default function HomeContent({
             alt="MyMechanic24 Doorstep car repair and washing in Nayta Mundla, Palda, Tejaji Nagar Indore"
             fill
             priority
+            fetchPriority="high"
+            quality={60}
             sizes="100vw"
             className="object-cover scale-105"
           />
@@ -327,61 +346,51 @@ export default function HomeContent({
             </div>
 
             {/* SINGLE HERO INQUIRY FORM (Reveals after 7 seconds or on CTA click) */}
-            <div className="relative min-h-[440px] flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                {showHeroForm ? (
-                  <motion.div
-                    key="quick-form"
-                    initial={{ opacity: 0, y: 24, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="w-full"
+            <div className="relative min-h-[440px] flex items-center justify-center w-full">
+              {showHeroForm ? (
+                <div
+                  key="quick-form"
+                  className="w-full transition-all duration-500 ease-out transform opacity-100 translate-y-0 scale-100"
+                >
+                  <QuickInquiryForm />
+                </div>
+              ) : (
+                <div
+                  key="hero-preview"
+                  className="w-full rounded-3xl border border-border/90 bg-card/90 p-6 md:p-8 backdrop-blur-2xl relative overflow-hidden text-center flex flex-col items-center justify-center shadow-2xl transition-all duration-300"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-red-500 to-amber-500" />
+                  
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4 ring-8 ring-primary/5">
+                    <Wrench size={28} />
+                  </div>
+
+                  <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-primary mb-2 bg-primary/10 px-3 py-1 rounded-full">
+                    <Sparkles size={12} /> Doorstep Care · Indore
+                  </div>
+
+                  <h3 className="text-xl font-black text-foreground mb-2">
+                    Doorstep Service Booking
+                  </h3>
+
+                  <p className="text-xs text-muted-foreground max-w-xs leading-relaxed mb-6">
+                    Mobile mechanic van reaches your home or office in Indore within 30–45 mins. 100% genuine OEM parts &amp; zero upfront fees.
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => setShowHeroForm(true)}
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3.5 px-6 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer hover:shadow-primary/30"
                   >
-                    <QuickInquiryForm />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="hero-preview"
-                    initial={{ opacity: 0.9 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.35 }}
-                    className="w-full rounded-3xl border border-border/90 bg-card/90 p-6 md:p-8 backdrop-blur-2xl relative overflow-hidden text-center flex flex-col items-center justify-center shadow-2xl"
-                  >
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-red-500 to-amber-500" />
-                    
-                    <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4 ring-8 ring-primary/5">
-                      <Wrench size={28} />
-                    </div>
+                    <Sparkles size={14} /> Open Booking Form
+                  </button>
 
-                    <div className="inline-flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-primary mb-2 bg-primary/10 px-3 py-1 rounded-full">
-                      <Sparkles size={12} /> Doorstep Care · Indore
-                    </div>
-
-                    <h3 className="text-xl font-black text-foreground mb-2">
-                      Doorstep Service Booking
-                    </h3>
-
-                    <p className="text-xs text-muted-foreground max-w-xs leading-relaxed mb-6">
-                      Mobile mechanic van reaches your home or office in Indore within 30–45 mins. 100% genuine OEM parts &amp; zero upfront fees.
-                    </p>
-
-                    <button
-                      type="button"
-                      onClick={() => setShowHeroForm(true)}
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3.5 px-6 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer hover:shadow-primary/30"
-                    >
-                      <Sparkles size={14} /> Open Booking Form
-                    </button>
-
-                    <div className="mt-4 flex items-center gap-2 text-[11px] text-muted-foreground">
-                      <Clock size={13} className="text-primary animate-pulse" />
-                      <span>Inquiry form opens automatically in 7 seconds</span>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  <div className="mt-4 flex items-center gap-2 text-[11px] text-muted-foreground">
+                    <Clock size={13} className="text-primary animate-pulse" />
+                    <span>Inquiry form opens automatically in 7 seconds</span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -591,6 +600,7 @@ export default function HomeContent({
                       src={pkg.image}
                       alt={`${pkg.title} in Indore, Nayta Mundla, Palda, Tejaji Nagar`}
                       fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
                       className="object-cover hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 right-3 bg-primary text-primary-foreground text-[10px] font-black uppercase px-2.5 py-1 rounded-md tracking-wider">
@@ -710,7 +720,7 @@ export default function HomeContent({
 
       {/* ================= FIXED BACKGROUND PARALLAX SECTION (Uses /mymechanic_3.avif) ================= */}
       <section
-        className="relative py-28 bg-fixed bg-center bg-cover border-y border-border"
+        className="relative py-28 md:bg-fixed bg-center bg-cover border-y border-border"
         style={{ backgroundImage: `url('/mymechanic_3.avif')` }}
       >
         {/* Deep Translucent Dark Backdrop */}
@@ -817,6 +827,7 @@ export default function HomeContent({
                       src={service.image || `/car${i + 1}.jpg`}
                       alt={`${service.title} in Indore`}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3 bg-background/80 backdrop-blur-md px-3 py-1 rounded text-[11px] font-bold uppercase tracking-wider text-foreground">
@@ -858,57 +869,8 @@ export default function HomeContent({
             ))}
           </div>
 
-          {/* Mobile Swiper */}
-          <div className="md:hidden">
-            <Swiper
-              effect={"cards"}
-              grabCursor={true}
-              modules={[EffectCards]}
-              className="mySwiper"
-            >
-              {services.map((service, index) => (
-                <SwiperSlide key={service.id || index}>
-                  <div className="relative w-full h-[460px] rounded-2xl overflow-hidden bg-card border border-border">
-                    <div className="relative h-48 w-full">
-                      <Image
-                        src={service.image || `/car${index + 1}.jpg`}
-                        alt={service.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="p-5 flex flex-col justify-between h-[calc(460px-192px)]">
-                      <div>
-                        <h3 className="text-base font-bold uppercase mb-1">
-                          {service.title}
-                        </h3>
-                        <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
-                          {service.description}
-                        </p>
-                        <div className="flex justify-between items-center text-xs py-1.5 px-2.5 bg-secondary rounded mb-3">
-                          <span className="font-bold text-primary">{service.price}</span>
-                          <span className="text-muted-foreground">{service.duration}</span>
-                        </div>
-                        <ul className="text-xs space-y-1 text-muted-foreground">
-                          {service.features?.slice(0, 3).map((f, i) => (
-                            <li key={i} className="flex items-center gap-1.5">
-                              <CheckCircle2 size={11} className="text-primary" /> {f}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <Link
-                        href="/contact"
-                        className="w-full text-center bg-primary text-primary-foreground py-2.5 rounded text-xs font-bold uppercase tracking-wider"
-                      >
-                        Book Now
-                      </Link>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+          {/* Mobile Swiper (Dynamically Loaded) */}
+          <ServicesMobileSwiper services={services} />
         </div>
       </section>
 
@@ -972,6 +934,7 @@ export default function HomeContent({
                   src="/mymechanic_garage_indore.avif"
                   alt="MyMechanic24 Garage Facility on Nayta Mundla Main Road Indore"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
@@ -1009,55 +972,8 @@ export default function HomeContent({
             </p>
           </div>
 
-          {/* Swiper Carousel for Testimonials */}
-          <div className="mb-12">
-            <Swiper
-              modules={[Autoplay, Pagination]}
-              spaceBetween={24}
-              slidesPerView={1}
-              breakpoints={{
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-              }}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
-              pagination={{ clickable: true }}
-              className="pb-12"
-            >
-              {localReviews.map((item, i) => (
-                <SwiperSlide key={i} className="h-auto">
-                  <div className="bg-card border border-border/80 rounded-2xl p-7 shadow-sm hover:border-primary/40 transition-all flex flex-col justify-between h-full">
-                    <div>
-                      <div className="flex justify-between items-center mb-4">
-                        <div className="flex gap-1 text-amber-500">
-                          {[...Array(5)].map((_, s) => (
-                            <Star key={s} size={14} className="fill-amber-500" />
-                          ))}
-                        </div>
-                        <span className="text-[10px] font-bold text-primary uppercase bg-primary/10 px-2 py-0.5 rounded">
-                          {item.service}
-                        </span>
-                      </div>
-                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed italic mb-6">
-                        "{item.comment}"
-                      </p>
-                    </div>
-
-                    <div className="pt-4 border-t border-border flex items-center justify-between">
-                      <div>
-                        <h3 className="text-xs font-bold text-foreground">
-                          {item.name}
-                        </h3>
-                        <p className="text-[10px] text-muted-foreground">
-                          {item.vehicle} · {item.location}
-                        </p>
-                      </div>
-                      <CheckCircle2 size={16} className="text-emerald-500" />
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+          {/* Swiper Carousel for Testimonials (Dynamically Loaded) */}
+          <TestimonialsSwiper reviews={localReviews} />
 
           {/* Google Maps Reviews Link */}
           <div className="bg-card border border-border/80 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">

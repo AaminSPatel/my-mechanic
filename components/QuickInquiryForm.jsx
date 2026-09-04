@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Wrench, ShieldCheck, Sparkles, CheckCircle2, Loader2 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { motion } from "framer-motion";
+import {motion} from 'framer-motion'
 
 const WHATSAPP_NUMBER = "919977823169";
 

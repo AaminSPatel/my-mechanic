@@ -12,7 +12,7 @@ export default function ThemeToggle() {
       className="p-2 rounded-lg bg-secondary hover:bg-muted transition-colors"
       aria-label="Toggle theme"
     >
-      {theme.isDarkMode ? (
+      {theme.mounted && theme.isDarkMode ? (
         <Sun className="w-5 h-5 text-primary" />
       ) : (
         <Moon className="w-5 h-5 text-primary" />

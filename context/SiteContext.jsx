@@ -60,10 +60,9 @@ export function SiteProvider({ children }) {
     theme: {
       isDarkMode,
       toggleTheme,
+      mounted,
     },
   };
-
-  if (!mounted) return null;
 
   return (
     <SiteContext.Provider value={siteData}>
