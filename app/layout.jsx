@@ -9,8 +9,12 @@ import Script from "next/script";
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mymechanic24.vercel.app').trim().replace(/\/$/, '');
 
 export const metadata = {
-  title: 'MyMechanic24 | Doorstep Car Repair & Washing in Indore | Nayta Mundla Garage',
-  description: 'Expert auto repair and doorstep car wash services across Indore. Central workshop on Nayta Mundla Main Road, serving Palda, Tejaji Nagar, Udhyog Nagar, and nearby areas.',
+  title: {
+    default: 'Doorstep Car Repair & Washing in Indore | MyMechanic24',
+    template: '%s | MyMechanic24',
+  },
+  description:
+    'Expert doorstep car repair & foam wash at home in Indore. Certified mechanics, genuine OEM parts & fast 30-min arrival in Nayta Mundla & Palda. Book now!',
   keywords: 'car repair indore, doorstep car wash indore, car mechanic nayta mundla, car service palda, car repair tejaji nagar, mobile car mechanic indore, MyMechanic24',
   authors: [{ name: 'MyMechanic24 Auto Care' }],
   creator: 'MyMechanic24 Auto Care',
@@ -25,8 +29,9 @@ export const metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'MyMechanic24 | Doorstep Car Service & Repair in Indore',
-    description: 'Expert mechanics, genuine parts, transparent pricing, and convenient doorstep services across Indore. Garage on Nayta Mundla Main Road.',
+    title: 'Doorstep Car Repair & Washing in Indore | MyMechanic24',
+    description:
+      'Certified doorstep mechanics, genuine OEM parts & foam car wash at home across Indore. Central workshop at Nayta Mundla Road. Call +91 99778 23169.',
     url: siteUrl,
     siteName: 'MyMechanic24 Auto Care',
     images: [
@@ -42,8 +47,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MyMechanic24 - Doorstep Car Repair & Washing in Indore',
-    description: 'Expert auto repair and doorstep car wash services in Indore. Workshop on Nayta Mundla Main Road, serving Palda & Tejaji Nagar.',
+    title: 'Doorstep Car Repair & Washing in Indore | MyMechanic24',
+    description:
+      'Fast doorstep car repair, computerized diagnostics & car wash in Indore. 30-min arrival across Nayta Mundla, Palda & Tejaji Nagar. Book today!',
     images: [`${siteUrl}/mechanic_inspecting_a_car.jpeg`],
     creator: '@mymechaniccare',
   },
@@ -173,6 +179,7 @@ export default function RootLayout({ children }) {
           src="https://cdn.counter.dev/script.js" 
           data-id="f7f1820c-0edc-4ef0-8dd4-1745e73e696f" 
           data-utcoffset="6"
+          strategy="afterInteractive"
           strategy="lazyOnload"
         />
       </body>

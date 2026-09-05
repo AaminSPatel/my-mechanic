@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Wrench, ShieldCheck, Sparkles, CheckCircle2, Loader2 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import {motion} from 'framer-motion'
 
 const WHATSAPP_NUMBER = "919977823169";
 
@@ -74,13 +73,9 @@ export default function QuickInquiryForm() {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0.8, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    <div
       id="quick-inquiry"
-      className="rounded-3xl border border-border/90 bg-card/95 p-6 shadow-2xl backdrop-blur-2xl md:p-8 relative overflow-hidden"
+      className="rounded-3xl border border-border/90 bg-card/95 p-6 shadow-2xl backdrop-blur-2xl md:p-8 relative overflow-hidden transition-all duration-500"
     >
       {/* Decorative top accent */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-red-500 to-amber-500" />
@@ -234,6 +229,6 @@ export default function QuickInquiryForm() {
         </span>
         <span>⚡ 15-Min Response</span>
       </div>
-    </motion.div>
+    </div>
   );
 }

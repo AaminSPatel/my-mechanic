@@ -8,9 +8,9 @@ import { reviewSchema } from '@/schema/reviewSchema';
 import { SITE_URL, COMPANY, getCanonicalUrl } from '@/lib/constants';
 
 export const metadata = {
-  title: 'MyMechanic24 | Doorstep Car Repair & Washing in Indore | Nayta Mundla Garage',
+  title: 'Doorstep Car Repair & Washing in Indore | MyMechanic24',
   description:
-    'MyMechanic24 delivers expert doorstep car repair, computerized diagnostics, and high-pressure snow foam wash at home across Indore. Central garage located on Nayta Mundla Main Road, serving Palda, Tejaji Nagar, Udhyog Nagar, and all Indore sectors.',
+    'Expert doorstep car repair & foam wash at home in Indore. Certified mechanics, genuine OEM parts & fast 30-min arrival in Nayta Mundla & Palda. Book now!',
   keywords: [
     'MyMechanic24',
     'car repair indore',
@@ -28,9 +28,9 @@ export const metadata = {
     canonical: getCanonicalUrl('/'),
   },
   openGraph: {
-    title: 'MyMechanic24 | Doorstep Car Service, Repair & Washing in Indore',
+    title: 'Doorstep Car Repair & Washing in Indore | MyMechanic24',
     description:
-      'Expert doorstep mechanics, genuine OEM parts, transparent pricing, and car washing at home. Garage on Nayta Mundla Main Road, serving Palda, Tejaji Nagar, and across Indore.',
+      'Certified doorstep mechanics, genuine OEM parts & foam car wash at home across Indore. Central workshop at Nayta Mundla Road. Call +91 99778 23169.',
     url: SITE_URL,
     siteName: COMPANY.legalName,
     images: [
@@ -46,9 +46,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MyMechanic24 - Doorstep Car Repair & Washing in Indore',
+    title: 'Doorstep Car Repair & Washing in Indore | MyMechanic24',
     description:
-      'Expert auto repair and doorstep car wash services in Indore. Workshop on Nayta Mundla Main Road, serving Palda & Tejaji Nagar.',
+      'Fast doorstep car repair, computerized diagnostics & car wash in Indore. 30-min arrival across Nayta Mundla, Palda & Tejaji Nagar. Book today!',
     images: [`${SITE_URL}/mechanic_inspecting_a_car.jpeg`],
   },
 };

@@ -64,6 +64,8 @@ export function SiteProvider({ children }) {
     },
   };
 
+  if (!mounted) return null;
+
   return (
     <SiteContext.Provider value={siteData}>
       {children}

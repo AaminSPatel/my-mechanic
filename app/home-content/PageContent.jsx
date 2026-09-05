@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { testimonials as defaultTestimonials } from "@/data/testimonials";
+import { services as defaultServices } from "@/data/services";
 import dynamic from "next/dynamic";
 const ServicesMobileSwiper = dynamic(
   () => import("@/components/home/ServicesMobileSwiper"),
@@ -720,6 +721,7 @@ export default function HomeContent({
 
       {/* ================= FIXED BACKGROUND PARALLAX SECTION (Uses /mymechanic_3.avif) ================= */}
       <section
+        className="relative py-28 bg-fixed bg-center bg-cover border-y border-border"
         className="relative py-28 md:bg-fixed bg-center bg-cover border-y border-border"
         style={{ backgroundImage: `url('/mymechanic_3.avif')` }}
       >
